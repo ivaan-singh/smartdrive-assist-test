@@ -509,7 +509,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
       </div>
       <div class="form-field">
         <label>Reason</label>
-        <select>
+        <select name="reason">
           <option>Partnership / collaboration</option>
           <option>Investment inquiry</option>
           <option>Feedback on the prototype</option>
@@ -518,7 +518,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
         </select>
       </div>
       <div class="form-field"><label>Message</label><textarea rows="4" placeholder="Tell us what's on your mind..."></textarea></div>
-      <button class="submit-btn" onclick="alert('Message sent! We\'ll get back to you soon.')">Send message</button>
+      <button type="button" class="submit-btn" onclick="sendMail()">Send message</button>
     </div>
   </div>
 </section>
@@ -556,7 +556,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
   </div>
 </footer>
 <div class="foot-bottom">
-  <span>© 2025 SmartDrive Assist · TechCare Warriors · Gurugram, India</span>
+  <span>SmartDrive Assist · TechCare Warriors</span>
   <span>A student innovation project</span>
 </div>
 
@@ -578,6 +578,26 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     const isOpen = answer.classList.toggle('open');
     btn.classList.toggle('open', isOpen);
   }
+
+  function sendMail(){
+  const name = document.querySelector('input[name="name"]').value;
+  const email = document.querySelector('input[name="email"]').value;
+  const reason = document.querySelector('select[name="reason"]').value;
+  const message = document.querySelector('textarea').value;
+
+  const subject = encodeURIComponent("SmartDrive Assist — " + reason);
+
+  const body = encodeURIComponent(
+    "Name: " + name + "\n" +
+    "Email: " + email + "\n\n" +
+    "Message:\n" + message
+  );
+
+  const mailtoLink = `mailto:ivaansingh.k@gmail.com?subject=${subject}&body=${body}`;
+
+  window.location.href = mailtoLink;
+}
+  
 </script>
 </body>
 </html>
