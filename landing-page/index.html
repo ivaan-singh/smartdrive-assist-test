@@ -56,6 +56,38 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,
 .btn-outline{background:transparent;color:var(--accent);padding:.72rem 1.7rem;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:500;text-decoration:none;border:1.5px solid var(--accent);cursor:pointer;transition:background .2s,transform .15s;display:inline-block;}
 .btn-outline:hover{background:var(--accent-light);transform:translateY(-2px);}
 
+/* PAGE NAV BANNER */
+.page-nav-banner{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:3rem 5%;background:var(--text-dark);cursor:pointer;
+  border:none;width:100%;font-family:'DM Sans',sans-serif;
+  transition:background .25s;position:relative;overflow:hidden;
+  text-align:left;
+}
+.page-nav-banner::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent 60%,rgba(0,87,255,.1) 100%);
+  pointer-events:none;
+}
+.page-nav-banner:hover{background:#14172280;}
+.pnb-left{text-align:left;}
+.pnb-eyebrow{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.13em;color:rgba(255,255,255,.32);margin-bottom:.4rem;}
+.pnb-title{font-family:'Syne',sans-serif;font-size:clamp(1.5rem,3.2vw,2.4rem);font-weight:800;color:white;letter-spacing:-.025em;line-height:1.1;}
+.pnb-title span{color:var(--accent-mid);}
+.pnb-sub{font-size:.82rem;color:rgba(255,255,255,.35);margin-top:.45rem;font-weight:300;}
+.pnb-right{display:flex;align-items:center;gap:1.25rem;flex-shrink:0;}
+.pnb-dots{display:flex;flex-direction:column;gap:6px;}
+.pnb-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.14);}
+.pnb-dot.on{background:var(--accent-mid);}
+.pnb-arrow{
+  width:54px;height:54px;border-radius:50%;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.11);
+  display:flex;align-items:center;justify-content:center;
+  transition:transform .25s,background .25s,border-color .25s;flex-shrink:0;
+}
+.page-nav-banner:hover .pnb-arrow{transform:translateX(6px);background:rgba(0,87,255,.3);border-color:var(--accent-mid);}
+.pnb-arrow svg{width:20px;height:20px;fill:none;stroke:white;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+
 /* ── PAGE: HOME ── */
 #pg-home{}
 #hero{padding:calc(var(--nav-h) + 50px) 5% 70px;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;overflow:hidden;min-height:100vh;}
@@ -340,6 +372,26 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     </div>
   </div>
 
+  <!-- PAGE NAV: Home → Features -->
+  <button class="page-nav-banner" onclick="showPage('features')">
+    <div class="pnb-left">
+      <div class="pnb-eyebrow">Next &mdash; Features screen</div>
+      <div class="pnb-title">Built different.<br/><span>Engineered smarter.</span></div>
+      <div class="pnb-sub">9 smart modules, how it works, full specs</div>
+    </div>
+    <div class="pnb-right">
+      <div class="pnb-dots">
+        <div class="pnb-dot on"></div>
+        <div class="pnb-dot"></div>
+        <div class="pnb-dot"></div>
+        <div class="pnb-dot"></div>
+      </div>
+      <div class="pnb-arrow">
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+    </div>
+  </button>
+
   <!-- FOOTER -->
   <footer>
     <div class="foot-brand">
@@ -506,6 +558,26 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     </div>
   </div>
 
+  <!-- PAGE NAV: Features → About -->
+  <button class="page-nav-banner" onclick="showPage('about')">
+    <div class="pnb-left">
+      <div class="pnb-eyebrow">Next &mdash; About screen</div>
+      <div class="pnb-title">Built by students.<br/><span>Built for impact.</span></div>
+      <div class="pnb-sub">Our mission, the team, FAQ</div>
+    </div>
+    <div class="pnb-right">
+      <div class="pnb-dots">
+        <div class="pnb-dot"></div>
+        <div class="pnb-dot on"></div>
+        <div class="pnb-dot"></div>
+        <div class="pnb-dot"></div>
+      </div>
+      <div class="pnb-arrow">
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+    </div>
+  </button>
+
   <footer>
     <div class="foot-brand">
       <button class="foot-logo" onclick="showPage('home')">SmartDrive <span>Assist.</span></button>
@@ -625,6 +697,26 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     </div>
   </div>
 
+  <!-- PAGE NAV: About → Contact -->
+  <button class="page-nav-banner" onclick="showPage('contact')">
+    <div class="pnb-left">
+      <div class="pnb-eyebrow">Next &mdash; Contact screen</div>
+      <div class="pnb-title">Want to <span>collaborate?</span></div>
+      <div class="pnb-sub">Partnerships, investment, press, general enquiries</div>
+    </div>
+    <div class="pnb-right">
+      <div class="pnb-dots">
+        <div class="pnb-dot"></div>
+        <div class="pnb-dot"></div>
+        <div class="pnb-dot on"></div>
+        <div class="pnb-dot"></div>
+      </div>
+      <div class="pnb-arrow">
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+    </div>
+  </button>
+
   <footer>
     <div class="foot-brand">
       <button class="foot-logo" onclick="showPage('home')">SmartDrive <span>Assist.</span></button>
@@ -696,6 +788,26 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
       <button class="submit-btn" onclick="alert('Message sent! We\'ll get back to you soon.')">Send message</button>
     </div>
   </div>
+
+  <!-- PAGE NAV: Contact → Home (loops) -->
+  <button class="page-nav-banner" onclick="showPage('home')">
+    <div class="pnb-left">
+      <div class="pnb-eyebrow">Back to start &mdash; Home screen</div>
+      <div class="pnb-title">Smarter wheels.<br/><span>Real freedom.</span></div>
+      <div class="pnb-sub">Return to the beginning</div>
+    </div>
+    <div class="pnb-right">
+      <div class="pnb-dots">
+        <div class="pnb-dot"></div>
+        <div class="pnb-dot"></div>
+        <div class="pnb-dot"></div>
+        <div class="pnb-dot on"></div>
+      </div>
+      <div class="pnb-arrow" style="transform:rotate(180deg);">
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+    </div>
+  </button>
 
   <footer>
     <div class="foot-brand">
