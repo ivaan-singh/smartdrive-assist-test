@@ -4,6 +4,7 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>SmartDrive Assist — Mobility, Reimagined</title>
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg"/>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -11,10 +12,15 @@
   --white:#ffffff;--off-white:#f5f6f8;--border:#dde0e8;
   --text-muted:#6b7280;--text-dark:#0f1117;
   --accent:#0057FF;--accent-light:#e6eeff;--accent-mid:#3a7bff;
-  --green:#00b97d;--nav-h:68px;
+  --green:#00b97d;--green-light:#e0f8f0;--nav-h:68px;
 }
 html{scroll-behavior:smooth;}
 body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--text-dark);line-height:1.6;overflow-x:hidden;}
+/* LOGO */
+.nav-logo-wrap{display:flex;align-items:center;gap:.65rem;cursor:pointer;text-decoration:none;background:none;border:none;padding:0;}
+.nav-logo-icon{width:34px;height:34px;flex-shrink:0;}
+.nav-logo-text{font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;letter-spacing:-.02em;color:var(--text-dark);}
+.nav-logo-text span{color:var(--accent);}
 
 /* PAGE SYSTEM — only active page visible */
 .pg{display:none;min-height:100vh;padding-top:var(--nav-h);}
@@ -22,8 +28,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--text-d
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,0.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 5%;display:flex;align-items:center;justify-content:space-between;height:var(--nav-h);}
-.nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;letter-spacing:-.02em;color:var(--text-dark);text-decoration:none;cursor:pointer;}
-.nav-logo span{color:var(--accent);}
 .nav-links{display:flex;align-items:center;gap:1.75rem;list-style:none;}
 .nav-links>li{position:relative;}
 .nav-links>li>a,.nav-links>li>button{font-size:.87rem;font-weight:500;color:var(--text-muted);text-decoration:none;transition:color .2s;display:flex;align-items:center;gap:4px;background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;padding:0;}
@@ -56,7 +60,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,
 .btn-outline{background:transparent;color:var(--accent);padding:.72rem 1.7rem;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:.95rem;font-weight:500;text-decoration:none;border:1.5px solid var(--accent);cursor:pointer;transition:background .2s,transform .15s;display:inline-block;}
 .btn-outline:hover{background:var(--accent-light);transform:translateY(-2px);}
 
-/* PAGE NAV BANNER */
+/* PAGE NAV BANNER — always dark by default */
 .page-nav-banner{
   display:flex;align-items:center;justify-content:space-between;
   padding:3rem 5%;background:var(--text-dark);cursor:pointer;
@@ -69,7 +73,21 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,
   background:linear-gradient(90deg,transparent 60%,rgba(0,87,255,.1) 100%);
   pointer-events:none;
 }
-.page-nav-banner:hover{background:#14172280;}
+.page-nav-banner:hover{background:#181b28;}
+/* light-prev: banner follows a white/light section — flip to white with blue */
+.page-nav-banner.light-prev{background:var(--white);border-top:1px solid var(--border);}
+.page-nav-banner.light-prev::before{display:none;}
+.page-nav-banner.light-prev:hover{background:var(--off-white);}
+.page-nav-banner.light-prev .pnb-eyebrow{color:var(--text-muted);}
+.page-nav-banner.light-prev .pnb-title{color:var(--text-dark);}
+.page-nav-banner.light-prev .pnb-title span{color:var(--accent);}
+.page-nav-banner.light-prev .pnb-sub{color:var(--text-muted);}
+.page-nav-banner.light-prev .pnb-dot{background:var(--border);}
+.page-nav-banner.light-prev .pnb-dot.on{background:var(--accent);}
+.page-nav-banner.light-prev .pnb-arrow{background:var(--accent-light);border-color:rgba(0,87,255,.18);}
+.page-nav-banner.light-prev .pnb-arrow svg{stroke:var(--accent);}
+.page-nav-banner.light-prev:hover .pnb-arrow{background:var(--accent);border-color:var(--accent);transform:translateX(6px);}
+.page-nav-banner.light-prev:hover .pnb-arrow svg{stroke:white;}
 .pnb-left{text-align:left;}
 .pnb-eyebrow{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.13em;color:rgba(255,255,255,.32);margin-bottom:.4rem;}
 .pnb-title{font-family:'Syne',sans-serif;font-size:clamp(1.5rem,3.2vw,2.4rem);font-weight:800;color:white;letter-spacing:-.025em;line-height:1.1;}
@@ -79,13 +97,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,
 .pnb-dots{display:flex;flex-direction:column;gap:6px;}
 .pnb-dot{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.14);}
 .pnb-dot.on{background:var(--accent-mid);}
-.pnb-arrow{
-  width:54px;height:54px;border-radius:50%;
-  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.11);
-  display:flex;align-items:center;justify-content:center;
-  transition:transform .25s,background .25s,border-color .25s;flex-shrink:0;
-}
-.page-nav-banner:hover .pnb-arrow{transform:translateX(6px);background:rgba(0,87,255,.3);border-color:var(--accent-mid);}
+.pnb-arrow{width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.11);display:flex;align-items:center;justify-content:center;transition:transform .25s,background .25s,border-color .25s;flex-shrink:0;}
+.page-nav-banner:not(.light-prev):hover .pnb-arrow{transform:translateX(6px);background:rgba(0,87,255,.3);border-color:var(--accent-mid);}
 .pnb-arrow svg{width:20px;height:20px;fill:none;stroke:white;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
 
 /* ── PAGE: HOME ── */
@@ -267,7 +280,25 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" onclick="showPage('home')">SmartDrive <span>Assist.</span></a>
+  <a class="nav-logo-wrap" onclick="showPage('home')">
+    <svg class="nav-logo-icon" viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg">
+      <rect width="34" height="34" rx="8" fill="#0057FF"/>
+      <!-- wheel -->
+      <circle cx="13.5" cy="21" r="8.5" fill="none" stroke="white" stroke-width="2"/>
+      <line x1="13.5" y1="12.5" x2="13.5" y2="29.5" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+      <line x1="5" y1="21" x2="22" y2="21" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+      <circle cx="13.5" cy="21" r="2" fill="#0057FF" stroke="white" stroke-width="1.2"/>
+      <!-- lightning -->
+      <polygon points="14.5,13.5 11.5,19.5 14,19.5 11,26 17,20 14,20" fill="white"/>
+      <!-- small front wheel -->
+      <circle cx="24" cy="24" r="3.5" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
+      <!-- wifi arcs -->
+      <path d="M23 9.5 A3.5 3.5 0 0 1 28 9.5" fill="none" stroke="white" stroke-width="1.3" stroke-linecap="round" opacity="0.9"/>
+      <path d="M21 7 A6.5 6.5 0 0 1 30 7" fill="none" stroke="white" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+      <circle cx="25.5" cy="11.5" r="1.4" fill="white" opacity="0.9"/>
+    </svg>
+    <span class="nav-logo-text">SmartDrive <span>Assist.</span></span>
+  </a>
   <ul class="nav-links">
     <li><a onclick="showPage('home')" id="nl-home">Home</a></li>
     <li><a onclick="showPage('features')" id="nl-features">Features</a></li>
@@ -275,16 +306,20 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
       <button onclick="toggleDrop()">About</button>
       <ul class="dropdown" id="about-dropdown">
         <li><button onclick="showPage('about');closeDrop()">
+          <svg class="drop-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M10 2a4 4 0 100 8 4 4 0 000-8zm-7 16c0-3.31 3.13-6 7-6s7 2.69 7 6"/></svg>
           <span class="drop-text"><strong>Our Mission</strong><span>Why we built SmartDrive Assist</span></span>
         </button></li>
         <li><a href="https://ivaansingh.com/techcare-warriors" target="_blank" onclick="closeDrop()">
+          <svg class="drop-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="3" y="3" width="14" height="14" rx="2"/><path d="M7 10h6M10 7v6"/></svg>
           <span class="drop-text"><strong>TechCare Warriors</strong><span>The project behind the product</span></span>
         </a></li>
         <li><a href="https://ivaansingh.com/techcare-warriors/behind-the-build/" target="_blank" onclick="closeDrop()">
+          <svg class="drop-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M14 2l4 4-9 9H5v-4L14 2z"/></svg>
           <span class="drop-text"><strong>Behind the Build</strong><span>How we designed and prototyped it</span></span>
         </a></li>
         <div class="drop-divider"></div>
         <li><button onclick="showPage('home');scrollTo('testi');closeDrop()">
+          <svg class="drop-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M17 8c0 4-3.58 7-7 7a7.4 7.4 0 01-3-.63L3 16l1.63-4A6.94 6.94 0 013 8c0-3.87 3.13-7 7-7s7 3.13 7 7z"/></svg>
           <span class="drop-text"><strong>What People Say</strong><span>Expert feedback on the project</span></span>
         </button></li>
       </ul>
@@ -301,7 +336,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
   <section id="hero">
     <div class="hero-content fade-up">
       <div class="hero-badge">Prototype · v1.2 · Active Development</div>
-      <h1>Smarter wheels.<br/><span class="hl">Real freedom.</span></h1>
+      <h1>Mobility is a right,<br/><span class="hl">not a privilege.</span></h1>
       <p class="hero-sub">SmartDrive Assist is a bolt-on intelligent system that upgrades any manual wheelchair into a full-featured smart mobility aid — no replacement needed, at a target price of just Rs. 10,000.</p>
       <div class="btn-group">
         <button class="btn-primary" onclick="showPage('features')">Explore features</button>
@@ -317,8 +352,74 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     </div>
     <div class="hero-visual fade-up">
       <div class="hero-card">
-        <div class="hero-icon-wrap">
-          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a4 4 0 1 1 0 8 4 4 0 0 1 0-8zm0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4z"/></svg>
+        <!-- Full logo displayed prominently -->
+        <div style="margin-bottom:1.25rem;">
+          <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:320px;display:block;margin:0 auto;border-radius:14px;">
+            <defs>
+              <linearGradient id="hg1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#0057FF"/>
+                <stop offset="100%" stop-color="#3a7bff"/>
+              </linearGradient>
+              <linearGradient id="hg2" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#60a5ff"/>
+                <stop offset="100%" stop-color="#93c5ff"/>
+              </linearGradient>
+              <filter id="hglow">
+                <feGaussianBlur stdDeviation="3" result="b"/>
+                <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+              </filter>
+            </defs>
+            <!-- Background -->
+            <rect width="400" height="400" fill="#ffffff" rx="20"/>
+            <!-- Subtle grid -->
+            <g opacity="0.04" stroke="#0057FF" stroke-width="0.8">
+              <line x1="0" y1="80" x2="400" y2="80"/><line x1="0" y1="160" x2="400" y2="160"/>
+              <line x1="0" y1="240" x2="400" y2="240"/><line x1="0" y1="320" x2="400" y2="320"/>
+              <line x1="80" y1="0" x2="80" y2="400"/><line x1="160" y1="0" x2="160" y2="400"/>
+              <line x1="240" y1="0" x2="240" y2="400"/><line x1="320" y1="0" x2="320" y2="400"/>
+            </g>
+            <!-- Corner brackets -->
+            <polyline points="350,28 382,28 382,60" fill="none" stroke="#0057FF" stroke-width="2" opacity="0.3"/>
+            <polyline points="50,372 18,372 18,340" fill="none" stroke="#0057FF" stroke-width="2" opacity="0.3"/>
+            <!-- Wheelchair seat back -->
+            <rect x="152" y="115" width="9" height="82" rx="4" fill="#dde0e8"/>
+            <!-- Wheelchair seat -->
+            <rect x="152" y="190" width="74" height="9" rx="4" fill="#dde0e8"/>
+            <!-- Frame legs -->
+            <line x1="226" y1="199" x2="238" y2="262" stroke="#dde0e8" stroke-width="7" stroke-linecap="round"/>
+            <line x1="160" y1="199" x2="148" y2="262" stroke="#dde0e8" stroke-width="7" stroke-linecap="round"/>
+            <!-- Small front wheel -->
+            <circle cx="240" cy="267" r="17" fill="none" stroke="#dde0e8" stroke-width="6"/>
+            <circle cx="240" cy="267" r="4" fill="#dde0e8"/>
+            <!-- Main wheel outer light ring -->
+            <circle cx="155" cy="272" r="64" fill="none" stroke="#eceef2" stroke-width="14"/>
+            <!-- Main wheel accent ring -->
+            <circle cx="155" cy="272" r="64" fill="none" stroke="url(#hg1)" stroke-width="2.5" filter="url(#hglow)"/>
+            <!-- Spokes -->
+            <g stroke="url(#hg2)" stroke-width="1.8" opacity="0.4">
+              <line x1="155" y1="208" x2="155" y2="336"/>
+              <line x1="91" y1="272" x2="219" y2="272"/>
+              <line x1="110" y1="227" x2="200" y2="317"/>
+              <line x1="200" y1="227" x2="110" y2="317"/>
+            </g>
+            <!-- Wheel hub -->
+            <circle cx="155" cy="272" r="11" fill="white" stroke="url(#hg1)" stroke-width="2.5" filter="url(#hglow)"/>
+            <!-- Lightning bolt -->
+            <polygon points="161,251 150,269 158,269 150,290 167,265 158,265" fill="url(#hg1)" filter="url(#hglow)"/>
+            <!-- Wifi arcs -->
+            <g fill="none" stroke="#0057FF" stroke-linecap="round" opacity="0.85">
+              <path d="M 212 218 A 20 20 0 0 1 232 238" stroke-width="2.5"/>
+              <path d="M 206 210 A 30 30 0 0 1 236 240" stroke-width="2" opacity="0.6"/>
+              <path d="M 200 202 A 40 40 0 0 1 240 242" stroke-width="1.5" opacity="0.35"/>
+            </g>
+            <circle cx="222" cy="228" r="3.5" fill="#0057FF" filter="url(#hglow)"/>
+            <!-- SDA monogram -->
+            <text x="32" y="58" font-family="'Courier New',monospace" font-size="11" font-weight="700" fill="#0057FF" letter-spacing="3" opacity="0.7">SDA</text>
+            <line x1="32" y1="64" x2="74" y2="64" stroke="#0057FF" stroke-width="0.8" opacity="0.3"/>
+            <!-- Main text -->
+            <text x="200" y="354" font-family="'Courier New',monospace" font-size="22" font-weight="700" fill="#0f1117" letter-spacing="5" text-anchor="middle">SMARTDRIVE</text>
+            <text x="200" y="378" font-family="'Courier New',monospace" font-size="13" font-weight="400" fill="url(#hg1)" letter-spacing="10" text-anchor="middle">ASSIST</text>
+          </svg>
         </div>
         <p class="hc-title">SmartDrive Assist v1.2</p>
         <p class="hc-sub">9 smart modules &middot; Bolt-on &middot; Zero chair replacement</p>
@@ -372,8 +473,85 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     </div>
   </div>
 
+  <!-- HOME: WHY WE BUILT IT + FEATURES TEASER -->
+  <div style="background:var(--white);padding:70px 5%;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;max-width:1100px;margin:0 auto;align-items:center;" class="fade-up">
+      <div>
+        <div class="section-tag">Why we built it</div>
+        <h2 class="section-title" style="font-size:clamp(1.5rem,2.8vw,2.1rem);">Smart wheelchairs exist. Most people can't afford one.</h2>
+        <p class="section-sub" style="font-size:.93rem;margin-top:.5rem;">A powered electric wheelchair costs Rs. 80,000 to Rs. 3,00,000. SmartDrive Assist targets Rs. 10,000 — a clip-on kit, not a replacement. Same freedom. A fraction of the price.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.9rem;">
+        <div style="background:var(--off-white);border-radius:14px;padding:1.25rem;">
+          <div style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--accent);line-height:1;">Rs. 10K</div>
+          <div style="font-size:.78rem;color:var(--text-muted);margin-top:4px;">target price</div>
+        </div>
+        <div style="background:var(--off-white);border-radius:14px;padding:1.25rem;">
+          <div style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--accent);line-height:1;">75M+</div>
+          <div style="font-size:.78rem;color:var(--text-muted);margin-top:4px;">wheelchair users globally</div>
+        </div>
+        <div style="background:var(--off-white);border-radius:14px;padding:1.25rem;">
+          <div style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--accent);line-height:1;">0</div>
+          <div style="font-size:.78rem;color:var(--text-muted);margin-top:4px;">modifications to your chair</div>
+        </div>
+        <div style="background:var(--off-white);border-radius:14px;padding:1.25rem;">
+          <div style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--accent);line-height:1;">9</div>
+          <div style="font-size:.78rem;color:var(--text-muted);margin-top:4px;">smart features built-in</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOME: FEATURES QUICK LOOK -->
+  <div style="background:var(--off-white);padding:70px 5%;">
+    <div style="max-width:1100px;margin:0 auto;" class="fade-up">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2rem;flex-wrap:wrap;gap:1rem;">
+        <div>
+          <div class="section-tag">What it does</div>
+          <h2 class="section-title" style="font-size:clamp(1.5rem,2.8vw,2.1rem);margin-bottom:0;">Key capabilities at a glance.</h2>
+        </div>
+        <button onclick="showPage('features')" style="font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:500;color:var(--accent);background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:.3rem;flex-shrink:0;">See all features &rarr;</button>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;">
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:14px;padding:1.25rem 1.4rem;display:flex;align-items:flex-start;gap:.9rem;">
+          <div style="width:36px;height:36px;border-radius:9px;background:var(--accent-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round"><path d="M10 3v14M3 10h14"/></svg>
+          </div>
+          <div><div style="font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem;margin-bottom:3px;">Manual / Electric Toggle</div><div style="font-size:.78rem;color:var(--text-muted);">Switch modes instantly, always your choice.</div></div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:14px;padding:1.25rem 1.4rem;display:flex;align-items:flex-start;gap:.9rem;">
+          <div style="width:36px;height:36px;border-radius:9px;background:#fff0ee;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="#c0392b" stroke-width="1.8" stroke-linecap="round"><path d="M10 2v8"/><circle cx="10" cy="14" r="2" fill="#c0392b"/></svg>
+          </div>
+          <div><div style="font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem;margin-bottom:3px;">SOS Alerts</div><div style="font-size:.78rem;color:var(--text-muted);">One tap notifies all emergency contacts.</div></div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:14px;padding:1.25rem 1.4rem;display:flex;align-items:flex-start;gap:.9rem;">
+          <div style="width:36px;height:36px;border-radius:9px;background:#f0edff;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="#5b3fd8" stroke-width="1.8" stroke-linecap="round"><circle cx="10" cy="10" r="7"/><path d="M7 10h6M10 7v6"/></svg>
+          </div>
+          <div><div style="font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem;margin-bottom:3px;">Obstacle Detection</div><div style="font-size:.78rem;color:var(--text-muted);">IR sensors stop the chair before impact.</div></div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:14px;padding:1.25rem 1.4rem;display:flex;align-items:flex-start;gap:.9rem;">
+          <div style="width:36px;height:36px;border-radius:9px;background:#fff8e0;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="#9a6f00" stroke-width="1.8" stroke-linecap="round"><path d="M10 3l2.5 5 5.5.8-4 3.9.9 5.3L10 15.5l-4.9 2.5.9-5.3-4-3.9 5.5-.8z"/></svg>
+          </div>
+          <div><div style="font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem;margin-bottom:3px;">Auto-Recharging</div><div style="font-size:.78rem;color:var(--text-muted);">Charges itself while being pushed.</div></div>
+        </div>
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:14px;padding:1.25rem 1.4rem;display:flex;align-items:flex-start;gap:.9rem;">
+          <div style="width:36px;height:36px;border-radius:9px;background:#f0edff;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="16" height="16" viewBox="0 0 20 20" fill="none" stroke="#5b3fd8" stroke-width="1.8" stroke-linecap="round"><path d="M3 17l4-4M17 3l-4 4M10 10l4-4M6 14l4-4"/></svg>
+          </div>
+          <div><div style="font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem;margin-bottom:3px;">Edge Detection</div><div style="font-size:.78rem;color:var(--text-muted);">Ultrasonic sensors catch drop-offs.</div></div>
+        </div>
+        <div style="background:var(--accent);border-radius:14px;padding:1.25rem 1.4rem;display:flex;align-items:center;justify-content:center;cursor:pointer;gap:.5rem;" onclick="showPage('features')">
+          <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem;color:white;">+ 4 more &rarr;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- PAGE NAV: Home → Features -->
-  <button class="page-nav-banner" onclick="showPage('features')">
+  <button class="page-nav-banner light-prev" onclick="showPage('features')">
     <div class="pnb-left">
       <div class="pnb-eyebrow">Next &mdash; Features screen</div>
       <div class="pnb-title">Built different.<br/><span>Engineered smarter.</span></div>
@@ -559,7 +737,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
   </div>
 
   <!-- PAGE NAV: Features → About -->
-  <button class="page-nav-banner" onclick="showPage('about')">
+  <button class="page-nav-banner light-prev" onclick="showPage('about')">
     <div class="pnb-left">
       <div class="pnb-eyebrow">Next &mdash; About screen</div>
       <div class="pnb-title">Built by students.<br/><span>Built for impact.</span></div>
@@ -769,14 +947,15 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
         <div class="contact-detail-item"><strong>Project site</strong><a href="https://ivaansingh.com/techcare-warriors" target="_blank" style="color:var(--accent);text-decoration:none;">ivaansingh.com/techcare-warriors</a></div>
       </div>
     </div>
-    <div class="contact-form fade-up">
+    <div class="contact-form fade-up" id="contact-form-wrap">
+      <p style="font-size:.78rem;color:var(--text-muted);background:var(--off-white);border-radius:8px;padding:.6rem .9rem;line-height:1.5;">Your name and email are optional — they'll be pre-filled in your mail app if you add them, but the message will draft either way.</p>
       <div class="form-row">
-        <div class="form-field"><label>Name</label><input type="text" placeholder="Your name"/></div>
-        <div class="form-field"><label>Email</label><input type="email" placeholder="you@email.com"/></div>
+        <div class="form-field"><label>Name <span style="color:var(--text-muted);font-weight:400;">(optional)</span></label><input id="cf-name" type="text" placeholder="Your name"/></div>
+        <div class="form-field"><label>Email <span style="color:var(--text-muted);font-weight:400;">(optional)</span></label><input id="cf-email" type="email" placeholder="you@email.com"/></div>
       </div>
       <div class="form-field">
         <label>Reason</label>
-        <select>
+        <select id="cf-reason">
           <option>Partnership / collaboration</option>
           <option>Investment inquiry</option>
           <option>Feedback on the prototype</option>
@@ -784,16 +963,22 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
           <option>General question</option>
         </select>
       </div>
-      <div class="form-field"><label>Message</label><textarea rows="5" placeholder="Tell us what's on your mind..."></textarea></div>
-      <button class="submit-btn" onclick="alert('Message sent! We\'ll get back to you soon.')">Send message</button>
+      <div class="form-field"><label>Message</label><textarea id="cf-msg" rows="5" placeholder="Tell us what's on your mind..."></textarea></div>
+      <button class="submit-btn" id="send-btn" onclick="sendMail()">Open in mail app &rarr;</button>
+    </div>
+    <!-- sent state — shown after mailto fires -->
+    <div id="contact-sent" style="display:none;background:var(--green-light,#e0f8f0);border:1px solid #a0e8cc;border-radius:16px;padding:2rem 1.5rem;text-align:center;">
+      <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:#00835a;margin-bottom:.5rem;">Your mail app should be open.</div>
+      <p style="font-size:.88rem;color:#276749;margin-bottom:1.25rem;">The message has been drafted — just hit send from your mail app. Want to send another? Reload the page.</p>
+      <button onclick="window.location.reload()" style="background:#00835a;color:white;border:none;border-radius:8px;padding:.6rem 1.4rem;font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:500;cursor:pointer;">Reload page</button>
     </div>
   </div>
 
   <!-- PAGE NAV: Contact → Home (loops) -->
-  <button class="page-nav-banner" onclick="showPage('home')">
+  <button class="page-nav-banner light-prev" onclick="showPage('home')">
     <div class="pnb-left">
       <div class="pnb-eyebrow">Back to start &mdash; Home screen</div>
-      <div class="pnb-title">Smarter wheels.<br/><span>Real freedom.</span></div>
+      <div class="pnb-title">Mobility is a right,<br/><span>not a privilege.</span></div>
       <div class="pnb-sub">Return to the beginning</div>
     </div>
     <div class="pnb-right">
@@ -889,6 +1074,26 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     const isOpen = drawer.classList.toggle('open');
     btn.classList.toggle('open', isOpen);
     txt.textContent = isOpen ? 'Show fewer features' : 'Show all features';
+  }
+
+  // SEND MAIL — opens default mail app, then hides the form
+  function sendMail() {
+    const name    = (document.getElementById('cf-name').value  || '').trim();
+    const email   = (document.getElementById('cf-email').value || '').trim();
+    const reason  = document.getElementById('cf-reason').value;
+    const msg     = (document.getElementById('cf-msg').value   || '').trim();
+
+    const subject = encodeURIComponent('SmartDrive Assist — ' + reason);
+    let body = '';
+    if (name)  body += 'Name: ' + name + '\n';
+    if (email) body += 'Email: ' + email + '\n';
+    body += '\n' + (msg || '(no message entered)');
+
+    window.location.href = 'mailto:?subject=' + subject + '&body=' + encodeURIComponent(body);
+
+    // hide form, show sent state
+    document.getElementById('contact-form-wrap').style.display = 'none';
+    document.getElementById('contact-sent').style.display = 'block';
   }
 
   // FAQ ACCORDION
