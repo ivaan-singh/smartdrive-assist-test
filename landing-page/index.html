@@ -75,17 +75,17 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(255,255,255,
 }
 .page-nav-banner:hover{background:#181b28;}
 /* light-prev: banner follows a white/light section — flip to white with blue */
-.page-nav-banner.light-prev{background:var(--white);border-top:1px solid var(--border);}
+.page-nav-banner.light-prev{background:var(--off-white);border-top:1px solid var(--border);}
 .page-nav-banner.light-prev::before{display:none;}
-.page-nav-banner.light-prev:hover{background:var(--off-white);}
+.page-nav-banner.light-prev:hover{background:#eceef2;}
 .page-nav-banner.light-prev .pnb-eyebrow{color:var(--text-muted);}
 .page-nav-banner.light-prev .pnb-title{color:var(--text-dark);}
 .page-nav-banner.light-prev .pnb-title span{color:var(--accent);}
 .page-nav-banner.light-prev .pnb-sub{color:var(--text-muted);}
 .page-nav-banner.light-prev .pnb-dot{background:var(--border);}
 .page-nav-banner.light-prev .pnb-dot.on{background:var(--accent);}
-.page-nav-banner.light-prev .pnb-arrow{background:var(--accent-light);border-color:rgba(0,87,255,.18);}
-.page-nav-banner.light-prev .pnb-arrow svg{stroke:var(--accent);}
+.page-nav-banner.light-prev .pnb-arrow{background:#f2f2f2;border-color:#d8d8d8;}
+.page-nav-banner.light-prev .pnb-arrow svg{stroke:#9ca3af;}
 .page-nav-banner.light-prev:hover .pnb-arrow{background:var(--accent);border-color:var(--accent);transform:translateX(6px);}
 .page-nav-banner.light-prev:hover .pnb-arrow svg{stroke:white;}
 .pnb-left{text-align:left;}
@@ -644,9 +644,9 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
       <div class="feat-name">Edge Detection</div>
       <p class="feat-desc">Ultrasonic sensors detect drop-offs like steps and curbs, preventing dangerous falls before they happen.</p>
     </div>
-    <div class="feat-card" style="display:flex;flex-direction:column;justify-content:center;align-items:center;background:var(--off-white);border-style:dashed;text-align:center;gap:.45rem;min-height:160px;cursor:default;">
-      <p style="font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem;color:var(--text-dark);">+ 4 more features</p>
-      <p style="font-size:.77rem;color:var(--text-muted);">GPS &middot; Voice Control &middot; BT Remote &middot; Simple UI</p>
+    <div class="feat-card" onclick="toggleMore()" style="display:flex;flex-direction:column;justify-content:center;align-items:center;background:var(--accent-light);border:1.5px dashed rgba(0,87,255,.3);text-align:center;gap:.45rem;min-height:160px;cursor:pointer;transition:background .2s,border-color .2s;">
+      <p style="font-family:'Syne',sans-serif;font-weight:700;font-size:.9rem;color:var(--accent);">+ 4 more features</p>
+      <p style="font-size:.77rem;color:var(--accent-mid);">GPS &middot; Voice Control &middot; BT Remote &middot; Simple UI</p>
     </div>
   </div>
 
@@ -1032,13 +1032,17 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
 </div><!-- end pg-contact -->
 
 <script>
+  const VALID_PAGES = ['home','features','about','contact'];
+
   // PAGE ROUTER
   function showPage(id) {
+    if (!VALID_PAGES.includes(id)) id = 'home';
     document.querySelectorAll('.pg').forEach(p => p.classList.remove('active'));
     document.getElementById('pg-' + id).classList.add('active');
     window.scrollTo(0,0);
+    // update hash so reload lands on same page
+    try { history.pushState(null, '', '#' + id); } catch(e) { window.location.hash = id; }
     closeDrop();
-    // trigger fade-ups on new page
     setTimeout(initFades, 50);
     // update active nav link
     ['home','features','contact'].forEach(p => {
@@ -1046,6 +1050,22 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
       if(el) el.style.color = (p === id) ? 'var(--text-dark)' : '';
     });
   }
+
+  // handle browser back/forward
+  window.addEventListener('popstate', function() {
+    const hash = window.location.hash.replace('#','');
+    const id = VALID_PAGES.includes(hash) ? hash : 'home';
+    document.querySelectorAll('.pg').forEach(p => p.classList.remove('active'));
+    document.getElementById('pg-' + id).classList.add('active');
+    window.scrollTo(0,0);
+    setTimeout(initFades, 50);
+  });
+
+  // on load — read hash and go straight to that page
+  (function() {
+    const hash = window.location.hash.replace('#','');
+    showPage(VALID_PAGES.includes(hash) ? hash : 'home');
+  })();
 
   function scrollTo(id) {
     setTimeout(() => {
@@ -1074,6 +1094,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     const isOpen = drawer.classList.toggle('open');
     btn.classList.toggle('open', isOpen);
     txt.textContent = isOpen ? 'Show fewer features' : 'Show all features';
+    if (isOpen) setTimeout(() => drawer.scrollIntoView({behavior:'smooth', block:'nearest'}), 50);
   }
 
   // SEND MAIL — opens default mail app, then hides the form
