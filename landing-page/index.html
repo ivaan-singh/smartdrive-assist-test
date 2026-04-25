@@ -305,28 +305,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
   <ul class="nav-links">
     <li><a onclick="showPage('home')" id="nl-home">Home</a></li>
     <li><a onclick="showPage('features')" id="nl-features">Features</a></li>
-    <li class="has-drop" id="about-drop">
-      <button onclick="toggleDrop()">About</button>
-      <ul class="dropdown" id="about-dropdown">
-        <li><button onclick="showPage('about');closeDrop()">
-          <svg class="drop-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M10 2a4 4 0 100 8 4 4 0 000-8zm-7 16c0-3.31 3.13-6 7-6s7 2.69 7 6"/></svg>
-          <span class="drop-text"><strong>Our Mission</strong><span>Why we built SmartDrive Assist</span></span>
-        </button></li>
-        <li><a href="https://ivaansingh.com/techcare-warriors" target="_blank" onclick="closeDrop()">
-          <svg class="drop-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><rect x="3" y="3" width="14" height="14" rx="2"/><path d="M7 10h6M10 7v6"/></svg>
-          <span class="drop-text"><strong>TechCare Warriors</strong><span>The project behind the product</span></span>
-        </a></li>
-        <li><a href="https://ivaansingh.com/techcare-warriors/behind-the-build/" target="_blank" onclick="closeDrop()">
-          <svg class="drop-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M14 2l4 4-9 9H5v-4L14 2z"/></svg>
-          <span class="drop-text"><strong>Behind the Build</strong><span>How we designed and prototyped it</span></span>
-        </a></li>
-        <div class="drop-divider"></div>
-        <li><button onclick="showPage('home');scrollTo('testi');closeDrop()">
-          <svg class="drop-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M17 8c0 4-3.58 7-7 7a7.4 7.4 0 01-3-.63L3 16l1.63-4A6.94 6.94 0 013 8c0-3.87 3.13-7 7-7s7 3.13 7 7z"/></svg>
-          <span class="drop-text"><strong>What People Say</strong><span>Expert feedback on the project</span></span>
-        </button></li>
-      </ul>
-    </li>
+    <li><a onclick="showPage('about')" id="nl-about">About</a></li>
     <li><a onclick="showPage('contact')" id="nl-contact">Contact</a></li>
     <li><a class="nav-cta" onclick="showPage('contact')">Get in touch</a></li>
   </ul>
@@ -992,7 +971,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     closeDrop();
     setTimeout(initFades, 50);
     // update active nav link
-    ['home','features','contact'].forEach(p => {
+    ['home','features','about','contact'].forEach(p => {
       const el = document.getElementById('nl-' + p);
       if(el) el.style.color = (p === id) ? 'var(--text-dark)' : '';
     });
@@ -1023,14 +1002,16 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
 
   // ABOUT DROPDOWN — click to open, click outside to close
   function toggleDrop() {
-    document.getElementById('about-drop').classList.toggle('open');
+    const aboutDrop = document.getElementById('about-drop');
+    if (aboutDrop) aboutDrop.classList.toggle('open');
   }
   function closeDrop() {
-    document.getElementById('about-drop').classList.remove('open');
+    const aboutDrop = document.getElementById('about-drop');
+    if (aboutDrop) aboutDrop.classList.remove('open');
   }
   document.addEventListener('click', function(e) {
     const drop = document.getElementById('about-drop');
-    if (!drop.contains(e.target)) closeDrop();
+    if (drop && !drop.contains(e.target)) closeDrop();
   });
 
   // MORE FEATURES TOGGLE
