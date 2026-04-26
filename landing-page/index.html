@@ -1023,33 +1023,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
 </div><!-- end pg-contact -->
 
 <script>
-  const VALID_PAGES = ['home','features','about','faq','contact'];
-  const RECAPTCHA_SITE_KEY = 'YOUR_RECAPTCHA_SITE_KEY';
-  let recaptchaVerified = false;
-  let recaptchaWidgetId = null;
-
-  // PAGE ROUTER
-  function showPage(id) {
-    if (!VALID_PAGES.includes(id)) id = 'home';
-    document.querySelectorAll('.pg').forEach(p => p.classList.remove('active'));
-    document.getElementById('pg-' + id).classList.add('active');
-    window.scrollTo(0,0);
-    // update hash so reload lands on same page
-    try { history.pushState(null, '', '#' + id); } catch(e) { window.location.hash = id; }
-    closeDrop();
-    setTimeout(initFades, 50);
-    // update active nav link
-    ['home','features','about','faq','contact'].forEach(p => {
-      const el = document.getElementById('nl-' + p);
-      if(el) el.style.color = (p === id) ? 'var(--text-dark)' : '';
-    });
-  }
-
-  // handle browser back/forward
-  window.addEventListener('popstate', function() {
-    const hash = window.location.hash.replace('#','');
-    const id = VALID_PAGES.includes(hash) ? hash : 'home';
-    document.querySelectorAll('.pg').forEach(p => p.classList.remove('active'));
+  csList.remove('active'));
     document.getElementById('pg-' + id).classList.add('active');
     window.scrollTo(0,0);
     setTimeout(initFades, 50);
