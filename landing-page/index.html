@@ -6,7 +6,10 @@
 <title>SmartDrive Assist — Mobility, Reimagined</title>
 <link rel="icon" type="image/svg+xml" href="../images/favicon.svg"/>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"/>
+ codex/add-mailto-links-and-recaptcha
 <script src="https://www.google.com/recaptcha/api.js?onload=initCaptcha&render=explicit" async defer></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+ main
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
@@ -254,7 +257,10 @@ h1 .hl{color:var(--accent);}
 .form-field input:focus,.form-field textarea:focus,.form-field select:focus{border-color:var(--accent);background:white;}
 .submit-btn{background:var(--accent);color:white;border:none;border-radius:10px;padding:.85rem;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:500;cursor:pointer;transition:background .2s,transform .15s;}
 .submit-btn:hover{background:#003ee0;transform:translateY(-2px);}
+ codex/add-mailto-links-and-recaptcha
 .submit-btn:disabled{background:#9db7ff;color:#fff;opacity:1;cursor:not-allowed;transform:none;}
+.submit-btn:disabled{background:#9db7ff;cursor:not-allowed;transform:none;}
+ main
 .recaptcha-wrap{display:flex;flex-direction:column;gap:.5rem;}
 .captcha-error{display:none;font-size:.78rem;color:#c0392b;}
 
@@ -951,10 +957,22 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
       </div>
       <div class="form-field"><label>Message</label><textarea id="cf-msg" rows="5" placeholder="Tell us what's on your mind..."></textarea></div>
       <div class="recaptcha-wrap">
+ codex/add-mailto-links-and-recaptcha
         <div id="contact-recaptcha"></div>
         <p id="captcha-error" class="captcha-error">Please complete the reCAPTCHA before opening your mail draft.</p>
       </div>
       <button class="submit-btn" id="send-btn" onclick="sendMail()" disabled>Open in mail app &rarr;</button>
+        <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" data-callback="onCaptchaVerified" data-expired-callback="onCaptchaExpired"></div>
+        <p id="captcha-error" class="captcha-error">Please complete the reCAPTCHA before opening your mail draft.</p>
+      </div>
+      <button class="submit-btn" id="send-btn" onclick="sendMail()" disabled>Open in mail app &rarr;</button>
+
+        <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+        <p id="captcha-error" class="captcha-error">Please complete the reCAPTCHA before opening your mail draft.</p>
+      </div>
+      <button class="submit-btn" id="send-btn" onclick="sendMail()">Open in mail app &rarr;</button>
+
+ main
     </div>
     <!-- sent state — shown after mailto fires -->
     <div id="contact-sent" style="display:none;background:var(--green-light,#e0f8f0);border:1px solid #a0e8cc;border-radius:16px;padding:2rem 1.5rem;text-align:center;">
@@ -1093,6 +1111,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
   }
 
   // SEND MAIL — opens default mail app, then hides the form
+ codex/add-mailto-links-and-recaptcha
   function initCaptcha() {
     renderContactCaptcha();
   }
@@ -1108,6 +1127,8 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     });
   }
 
+
+ main
   function onCaptchaVerified() {
     const sendBtn = document.getElementById('send-btn');
     const captchaError = document.getElementById('captcha-error');
@@ -1121,7 +1142,10 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
   }
 
   function sendMail() {
+ codex/add-mailto-links-and-recaptcha
     const captchaResponse = (window.grecaptcha && captchaWidgetId !== null) ? window.grecaptcha.getResponse(captchaWidgetId) : '';
+    const captchaResponse = window.grecaptcha ? window.grecaptcha.getResponse() : '';
+ main
     const captchaError = document.getElementById('captcha-error');
     if (!captchaResponse) {
       captchaError.style.display = 'block';
