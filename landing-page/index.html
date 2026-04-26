@@ -6,6 +6,7 @@
 <title>SmartDrive Assist — Mobility, Reimagined</title>
 <link rel="icon" type="image/svg+xml" href="../images/favicon.svg"/>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"/>
+<script src="https://www.google.com/recaptcha/api.js?onload=initCaptcha&render=explicit" async defer></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
@@ -253,6 +254,9 @@ h1 .hl{color:var(--accent);}
 .form-field input:focus,.form-field textarea:focus,.form-field select:focus{border-color:var(--accent);background:white;}
 .submit-btn{background:var(--accent);color:white;border:none;border-radius:10px;padding:.85rem;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:500;cursor:pointer;transition:background .2s,transform .15s;}
 .submit-btn:hover{background:#003ee0;transform:translateY(-2px);}
+.submit-btn:disabled{background:#9db7ff;color:#fff;opacity:1;cursor:not-allowed;transform:none;}
+.recaptcha-wrap{display:flex;flex-direction:column;gap:.5rem;}
+.captcha-error{display:none;font-size:.78rem;color:#c0392b;}
 
 /* FOOTER */
 footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:2rem;}
@@ -946,7 +950,11 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
         </select>
       </div>
       <div class="form-field"><label>Message</label><textarea id="cf-msg" rows="5" placeholder="Tell us what's on your mind..."></textarea></div>
-      <button class="submit-btn" id="send-btn" onclick="sendMail()">Open in mail app &rarr;</button>
+      <div class="recaptcha-wrap">
+        <div id="contact-recaptcha"></div>
+        <p id="captcha-error" class="captcha-error">Please complete the reCAPTCHA before opening your mail draft.</p>
+      </div>
+      <button class="submit-btn" id="send-btn" onclick="sendMail()" disabled>Open in mail app &rarr;</button>
     </div>
     <!-- sent state — shown after mailto fires -->
     <div id="contact-sent" style="display:none;background:var(--green-light,#e0f8f0);border:1px solid #a0e8cc;border-radius:16px;padding:2rem 1.5rem;text-align:center;">
@@ -1015,6 +1023,8 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
 
 <script>
   const VALID_PAGES = ['home','features','about','faq','contact'];
+  const RECAPTCHA_SITE_KEY = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI';
+  let captchaWidgetId = null;
 
   // PAGE ROUTER
   function showPage(id) {
@@ -1026,6 +1036,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     try { history.pushState(null, '', '#' + id); } catch(e) { window.location.hash = id; }
     closeDrop();
     setTimeout(initFades, 50);
+    if (id === 'contact') setTimeout(renderContactCaptcha, 50);
     // update active nav link
     ['home','features','about','faq','contact'].forEach(p => {
       const el = document.getElementById('nl-' + p);
@@ -1082,7 +1093,42 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
   }
 
   // SEND MAIL — opens default mail app, then hides the form
+  function initCaptcha() {
+    renderContactCaptcha();
+  }
+
+  function renderContactCaptcha() {
+    if (!window.grecaptcha || captchaWidgetId !== null) return;
+    const captchaEl = document.getElementById('contact-recaptcha');
+    if (!captchaEl) return;
+    captchaWidgetId = window.grecaptcha.render('contact-recaptcha', {
+      sitekey: RECAPTCHA_SITE_KEY,
+      callback: onCaptchaVerified,
+      'expired-callback': onCaptchaExpired
+    });
+  }
+
+  function onCaptchaVerified() {
+    const sendBtn = document.getElementById('send-btn');
+    const captchaError = document.getElementById('captcha-error');
+    if (sendBtn) sendBtn.disabled = false;
+    if (captchaError) captchaError.style.display = 'none';
+  }
+
+  function onCaptchaExpired() {
+    const sendBtn = document.getElementById('send-btn');
+    if (sendBtn) sendBtn.disabled = true;
+  }
+
   function sendMail() {
+    const captchaResponse = (window.grecaptcha && captchaWidgetId !== null) ? window.grecaptcha.getResponse(captchaWidgetId) : '';
+    const captchaError = document.getElementById('captcha-error');
+    if (!captchaResponse) {
+      captchaError.style.display = 'block';
+      return;
+    }
+    captchaError.style.display = 'none';
+
     const name    = (document.getElementById('cf-name').value  || '').trim();
     const email   = (document.getElementById('cf-email').value || '').trim();
     const reason  = document.getElementById('cf-reason').value;
@@ -1094,7 +1140,8 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     if (email) body += 'Email: ' + email + '\n';
     body += '\n' + (msg || '(no message entered)');
 
-    window.location.href = 'mailto:?subject=' + subject + '&body=' + encodeURIComponent(body);
+    const recipients = 'ivaansingh.com@gmail.com,siraajpabby@gmail.com';
+    window.location.href = 'mailto:' + recipients + '?subject=' + subject + '&body=' + encodeURIComponent(body);
 
     // hide form, show sent state
     document.getElementById('contact-form-wrap').style.display = 'none';
