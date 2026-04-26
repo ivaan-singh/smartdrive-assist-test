@@ -1024,11 +1024,15 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
 
 <script>
   const VALID_PAGES = ['home','features','about','faq','contact'];
-  // reCAPTCHA key strategy: use window.RECAPTCHA_SITE_KEY when supplied,
-  // otherwise fall back to Google's public v2 test key for dev.
-  const RECAPTCHA_SITE_KEY = (window.RECAPTCHA_SITE_KEY && window.RECAPTCHA_SITE_KEY !== 'YOUR_RECAPTCHA_SITE_KEY')
-    ? window.RECAPTCHA_SITE_KEY
-    : '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI';
+  const DEFAULT_RECAPTCHA_SITE_KEY = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI';
+  const injectedRecaptchaKey = (window.RECAPTCHA_SITE_KEY || '').trim();
+  // Conflict-safe key selection:
+  // - use host-provided key when available
+  // - ignore unresolved placeholder values
+  // - fallback to Google's public v2 test key for dev
+  const RECAPTCHA_SITE_KEY = (injectedRecaptchaKey && injectedRecaptchaKey !== 'YOUR_RECAPTCHA_SITE_KEY')
+    ? injectedRecaptchaKey
+    : DEFAULT_RECAPTCHA_SITE_KEY;
   let recaptchaVerified = false;
   let recaptchaWidgetId = null;
 
