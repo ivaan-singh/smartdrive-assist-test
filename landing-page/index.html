@@ -6,6 +6,7 @@
 <title>SmartDrive Assist — Mobility, Reimagined</title>
 <link rel="icon" type="image/svg+xml" href="../images/favicon.svg"/>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"/>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
@@ -253,6 +254,9 @@ h1 .hl{color:var(--accent);}
 .form-field input:focus,.form-field textarea:focus,.form-field select:focus{border-color:var(--accent);background:white;}
 .submit-btn{background:var(--accent);color:white;border:none;border-radius:10px;padding:.85rem;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:500;cursor:pointer;transition:background .2s,transform .15s;}
 .submit-btn:hover{background:#003ee0;transform:translateY(-2px);}
+.submit-btn:disabled{background:#b8c7ea;color:#eef2ff;cursor:not-allowed;transform:none;opacity:.9;}
+.submit-btn:disabled:hover{background:#b8c7ea;transform:none;}
+.captcha-wrap{display:flex;justify-content:flex-start;padding:.35rem 0;}
 
 /* FOOTER */
 footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:2rem;}
@@ -946,7 +950,10 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
         </select>
       </div>
       <div class="form-field"><label>Message</label><textarea id="cf-msg" rows="5" placeholder="Tell us what's on your mind..."></textarea></div>
-      <button class="submit-btn" id="send-btn" onclick="sendMail()">Open in mail app &rarr;</button>
+      <div class="captcha-wrap">
+        <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" data-callback="onRecaptchaVerified" data-expired-callback="onRecaptchaExpired"></div>
+      </div>
+      <button class="submit-btn" id="send-btn" onclick="sendMail()" disabled>Open in mail app &rarr;</button>
     </div>
     <!-- sent state — shown after mailto fires -->
     <div id="contact-sent" style="display:none;background:var(--green-light,#e0f8f0);border:1px solid #a0e8cc;border-radius:16px;padding:2rem 1.5rem;text-align:center;">
@@ -1083,6 +1090,8 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
 
   // SEND MAIL — opens default mail app, then hides the form
   function sendMail() {
+    if (!(window.grecaptcha && window.grecaptcha.getResponse().length)) return;
+
     const name    = (document.getElementById('cf-name').value  || '').trim();
     const email   = (document.getElementById('cf-email').value || '').trim();
     const reason  = document.getElementById('cf-reason').value;
@@ -1094,11 +1103,27 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     if (email) body += 'Email: ' + email + '\n';
     body += '\n' + (msg || '(no message entered)');
 
-    window.location.href = 'mailto:?subject=' + subject + '&body=' + encodeURIComponent(body);
+    const to = 'ivaansingh.k@gmail.com,siraajpabby@gmail.com';
+    window.location.href = 'mailto:' + to + '?subject=' + subject + '&body=' + encodeURIComponent(body);
 
     // hide form, show sent state
     document.getElementById('contact-form-wrap').style.display = 'none';
     document.getElementById('contact-sent').style.display = 'block';
+  }
+
+  function toggleSendButton() {
+    const sendBtn = document.getElementById('send-btn');
+    if (!sendBtn) return;
+    const verified = !!(window.grecaptcha && window.grecaptcha.getResponse().length);
+    sendBtn.disabled = !verified;
+  }
+
+  function onRecaptchaVerified() {
+    toggleSendButton();
+  }
+
+  function onRecaptchaExpired() {
+    toggleSendButton();
   }
 
   // FAQ ACCORDION
