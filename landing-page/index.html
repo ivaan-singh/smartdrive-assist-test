@@ -254,7 +254,11 @@ h1 .hl{color:var(--accent);}
 .submit-btn{background:var(--accent);color:white;border:none;border-radius:10px;padding:.85rem;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:500;cursor:pointer;transition:background .2s,transform .15s;}
 .submit-btn:hover{background:#003ee0;transform:translateY(-2px);}
 .captcha-wrap{background:var(--off-white);border:1px solid var(--border);border-radius:10px;padding:1rem;}
+ codex/add-recaptcha-for-mailto-link-iphkol
 .captcha-wrap #recaptcha-container{min-height:112px;display:flex;align-items:flex-start;}
+
+.captcha-wrap #recaptcha-container{min-height:96px;display:flex;align-items:flex-start;}
+ main
 .captcha-status{font-size:.8rem;color:#a16207;margin-top:.2rem;}
 .submit-btn:disabled{background:#99b4ff;cursor:not-allowed;transform:none;}
 
@@ -1108,7 +1112,11 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     if (email) body += 'Email: ' + email + '\n';
     body += '\n' + (msg || '(no message entered)');
 
+ codex/add-recaptcha-for-mailto-link-iphkol
     window.location.href = 'mailto:ivaansingh.k@gmail.com,siraajpabby@gmail.com?subject=' + subject + '&body=' + encodeURIComponent(body);
+
+    window.location.href = 'mailto:ivaansingh.k@gmail.com,siraajpabby@gmail.com?subject=' + subject + '&body=' + encodeURIComponent(body);
+ main
 
     // hide form, show sent state
     document.getElementById('contact-form-wrap').style.display = 'none';
