@@ -256,7 +256,12 @@ h1 .hl{color:var(--accent);}
 .submit-btn:hover{background:#003ee0;transform:translateY(-2px);}
 .submit-btn:disabled{background:#b8c7ea;color:#eef2ff;cursor:not-allowed;transform:none;opacity:.9;}
 .submit-btn:disabled:hover{background:#b8c7ea;transform:none;}
+ codex/add-recaptcha-to-contact-form-7roe9r
 .captcha-wrap{display:flex;justify-content:flex-start;padding:.35rem 0;}
+.captcha-wrap{display:flex;align-items:flex-start;gap:.6rem;padding:.75rem .9rem;border:1px solid var(--border);border-radius:10px;background:var(--off-white);}
+.captcha-wrap input[type="checkbox"]{margin-top:.12rem;accent-color:var(--accent);}
+.captcha-wrap label{font-size:.84rem;color:var(--text-dark);line-height:1.5;cursor:pointer;}
+ main
 
 /* FOOTER */
 footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:2rem;}
@@ -951,7 +956,12 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
       </div>
       <div class="form-field"><label>Message</label><textarea id="cf-msg" rows="5" placeholder="Tell us what's on your mind..."></textarea></div>
       <div class="captcha-wrap">
+ codex/add-recaptcha-to-contact-form-7roe9r
         <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" data-callback="onRecaptchaVerified" data-expired-callback="onRecaptchaExpired"></div>
+
+        <input id="cf-captcha" type="checkbox" onchange="toggleSendButton()"/>
+        <label for="cf-captcha">I'm not a robot. Enable the email draft button.</label>
+ main
       </div>
       <button class="submit-btn" id="send-btn" onclick="sendMail()" disabled>Open in mail app &rarr;</button>
     </div>
@@ -1090,7 +1100,12 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
 
   // SEND MAIL — opens default mail app, then hides the form
   function sendMail() {
+ codex/add-recaptcha-to-contact-form-7roe9r
     if (!(window.grecaptcha && window.grecaptcha.getResponse().length)) return;
+
+    const captcha = document.getElementById('cf-captcha');
+    if (!captcha || !captcha.checked) return;
+ main
 
     const name    = (document.getElementById('cf-name').value  || '').trim();
     const email   = (document.getElementById('cf-email').value || '').trim();
@@ -1112,6 +1127,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
   }
 
   function toggleSendButton() {
+ codex/add-recaptcha-to-contact-form-7roe9r
     const sendBtn = document.getElementById('send-btn');
     if (!sendBtn) return;
     const verified = !!(window.grecaptcha && window.grecaptcha.getResponse().length);
@@ -1124,6 +1140,12 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
 
   function onRecaptchaExpired() {
     toggleSendButton();
+
+    const captcha = document.getElementById('cf-captcha');
+    const sendBtn = document.getElementById('send-btn');
+    if (!captcha || !sendBtn) return;
+    sendBtn.disabled = !captcha.checked;
+ main
   }
 
   // FAQ ACCORDION
