@@ -253,6 +253,10 @@ h1 .hl{color:var(--accent);}
 .form-field input:focus,.form-field textarea:focus,.form-field select:focus{border-color:var(--accent);background:white;}
 .submit-btn{background:var(--accent);color:white;border:none;border-radius:10px;padding:.85rem;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:500;cursor:pointer;transition:background .2s,transform .15s;}
 .submit-btn:hover{background:#003ee0;transform:translateY(-2px);}
+.captcha-wrap{background:var(--off-white);border:1px solid var(--border);border-radius:10px;padding:1rem;}
+.captcha-wrap #recaptcha-container{min-height:96px;display:flex;align-items:flex-start;}
+.captcha-status{font-size:.8rem;color:#a16207;margin-top:.2rem;}
+.submit-btn:disabled{background:#99b4ff;cursor:not-allowed;transform:none;}
 
 /* FOOTER */
 footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:2rem;}
@@ -946,7 +950,11 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
         </select>
       </div>
       <div class="form-field"><label>Message</label><textarea id="cf-msg" rows="5" placeholder="Tell us what's on your mind..."></textarea></div>
-      <button class="submit-btn" id="send-btn" onclick="sendMail()">Open in mail app &rarr;</button>
+      <div class="captcha-wrap">
+        <div id="recaptcha-container"></div>
+        <p class="captcha-status" id="captcha-status">reCAPTCHA required before opening your mail app.</p>
+      </div>
+      <button class="submit-btn" id="send-btn" onclick="sendMail()" disabled>Open in mail app &rarr;</button>
     </div>
     <!-- sent state — shown after mailto fires -->
     <div id="contact-sent" style="display:none;background:var(--green-light,#e0f8f0);border:1px solid #a0e8cc;border-radius:16px;padding:2rem 1.5rem;text-align:center;">
@@ -1015,6 +1023,10 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
 
 <script>
   const VALID_PAGES = ['home','features','about','faq','contact'];
+  // Use host key when provided; otherwise fallback to Google's public v2 test key.
+  const RECAPTCHA_SITE_KEY = (window.RECAPTCHA_SITE_KEY || '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI').trim();
+  let recaptchaVerified = false;
+  let recaptchaWidgetId = null;
 
   // PAGE ROUTER
   function showPage(id) {
@@ -1083,6 +1095,8 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
 
   // SEND MAIL — opens default mail app, then hides the form
   function sendMail() {
+    if (!recaptchaVerified) return;
+
     const name    = (document.getElementById('cf-name').value  || '').trim();
     const email   = (document.getElementById('cf-email').value || '').trim();
     const reason  = document.getElementById('cf-reason').value;
@@ -1094,7 +1108,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     if (email) body += 'Email: ' + email + '\n';
     body += '\n' + (msg || '(no message entered)');
 
-    window.location.href = 'mailto:?subject=' + subject + '&body=' + encodeURIComponent(body);
+    window.location.href = 'mailto:ivaansingh.k@gmail.com?subject=' + subject + '&body=' + encodeURIComponent(body);
 
     // hide form, show sent state
     document.getElementById('contact-form-wrap').style.display = 'none';
@@ -1121,6 +1135,52 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     });
   }
   initFades();
+
+  function updateCaptchaState() {
+    const sendBtn = document.getElementById('send-btn');
+    const status = document.getElementById('captcha-status');
+    if (!sendBtn || !status) return;
+    sendBtn.disabled = !recaptchaVerified;
+    status.textContent = recaptchaVerified
+      ? 'reCAPTCHA verified. You can now open your mail app.'
+      : 'reCAPTCHA required before opening your mail app.';
+    status.style.color = recaptchaVerified ? '#00835a' : '#a16207';
+  }
+
+  function onCaptchaSuccess() {
+    recaptchaVerified = true;
+    updateCaptchaState();
+  }
+
+  function onCaptchaExpired() {
+    recaptchaVerified = false;
+    updateCaptchaState();
+  }
+
+  function onCaptchaErrored() {
+    recaptchaVerified = false;
+    updateCaptchaState();
+  }
+
+  function initRecaptcha() {
+    const status = document.getElementById('captcha-status');
+    if (!window.grecaptcha || !document.getElementById('recaptcha-container')) {
+      if (status) status.textContent = 'Unable to load reCAPTCHA. Please refresh and try again.';
+      return;
+    }
+    recaptchaWidgetId = window.grecaptcha.render('recaptcha-container', {
+      sitekey: RECAPTCHA_SITE_KEY,
+      callback: onCaptchaSuccess,
+      'expired-callback': onCaptchaExpired,
+      'error-callback': onCaptchaErrored
+    });
+    if (recaptchaWidgetId !== null && status) status.textContent = 'reCAPTCHA required before opening your mail app.';
+    updateCaptchaState();
+  }
+
+  window.initRecaptcha = initRecaptcha;
+  updateCaptchaState();
 </script>
+<script src="https://www.google.com/recaptcha/api.js?onload=initRecaptcha&render=explicit" async defer></script>
 </body>
 </html>
