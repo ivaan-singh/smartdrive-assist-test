@@ -254,6 +254,7 @@ h1 .hl{color:var(--accent);}
 .form-field input:focus,.form-field textarea:focus,.form-field select:focus{border-color:var(--accent);background:white;}
 .submit-btn{background:var(--accent);color:white;border:none;border-radius:10px;padding:.85rem;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:500;cursor:pointer;transition:background .2s,transform .15s;}
 .submit-btn:hover{background:#003ee0;transform:translateY(-2px);}
+.submit-btn:disabled{background:#9db7ff;cursor:not-allowed;transform:none;}
 .recaptcha-wrap{display:flex;flex-direction:column;gap:.5rem;}
 .captcha-error{display:none;font-size:.78rem;color:#c0392b;}
 
@@ -950,10 +951,16 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
       </div>
       <div class="form-field"><label>Message</label><textarea id="cf-msg" rows="5" placeholder="Tell us what's on your mind..."></textarea></div>
       <div class="recaptcha-wrap">
+        <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" data-callback="onCaptchaVerified" data-expired-callback="onCaptchaExpired"></div>
+        <p id="captcha-error" class="captcha-error">Please complete the reCAPTCHA before opening your mail draft.</p>
+      </div>
+      <button class="submit-btn" id="send-btn" onclick="sendMail()" disabled>Open in mail app &rarr;</button>
+
         <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
         <p id="captcha-error" class="captcha-error">Please complete the reCAPTCHA before opening your mail draft.</p>
       </div>
       <button class="submit-btn" id="send-btn" onclick="sendMail()">Open in mail app &rarr;</button>
+
     </div>
     <!-- sent state — shown after mailto fires -->
     <div id="contact-sent" style="display:none;background:var(--green-light,#e0f8f0);border:1px solid #a0e8cc;border-radius:16px;padding:2rem 1.5rem;text-align:center;">
@@ -1089,6 +1096,18 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
   }
 
   // SEND MAIL — opens default mail app, then hides the form
+  function onCaptchaVerified() {
+    const sendBtn = document.getElementById('send-btn');
+    const captchaError = document.getElementById('captcha-error');
+    if (sendBtn) sendBtn.disabled = false;
+    if (captchaError) captchaError.style.display = 'none';
+  }
+
+  function onCaptchaExpired() {
+    const sendBtn = document.getElementById('send-btn');
+    if (sendBtn) sendBtn.disabled = true;
+  }
+
   function sendMail() {
     const captchaResponse = window.grecaptcha ? window.grecaptcha.getResponse() : '';
     const captchaError = document.getElementById('captcha-error');
