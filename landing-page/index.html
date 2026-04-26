@@ -1023,6 +1023,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
 </div><!-- end pg-contact -->
 
 <script>
+ codex/add-recaptcha-for-mailto-link-d5r6bk
   const VALID_PAGES = ['home','features','about','faq','contact'];
   const DEFAULT_RECAPTCHA_SITE_KEY = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI';
   const injectedRecaptchaKey = (window.RECAPTCHA_SITE_KEY || '').trim();
@@ -1058,6 +1059,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     const hash = window.location.hash.replace('#','');
     const id = VALID_PAGES.includes(hash) ? hash : 'home';
     document.querySelectorAll('.pg').forEach(p => p.classList.remove('active'));
+  csList.remove('active')); main
     document.getElementById('pg-' + id).classList.add('active');
     window.scrollTo(0,0);
     setTimeout(initFades, 50);
