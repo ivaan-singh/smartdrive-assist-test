@@ -1024,9 +1024,11 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
 
 <script>
   const VALID_PAGES = ['home','features','about','faq','contact'];
-  // Public Google reCAPTCHA v2 test key (works on all domains for testing/dev only).
-  // Replace with your production site key before launch.
-  const RECAPTCHA_SITE_KEY = '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI';
+  // Prefer a custom key from window.RECAPTCHA_SITE_KEY; fallback to Google's public v2 test key.
+  // If a branch still has 'YOUR_RECAPTCHA_SITE_KEY', this fallback avoids runtime "Invalid site key" errors.
+  const RECAPTCHA_SITE_KEY = (window.RECAPTCHA_SITE_KEY && window.RECAPTCHA_SITE_KEY !== 'YOUR_RECAPTCHA_SITE_KEY')
+    ? window.RECAPTCHA_SITE_KEY
+    : '6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI';
   let recaptchaVerified = false;
   let recaptchaWidgetId = null;
 
