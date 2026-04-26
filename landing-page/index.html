@@ -253,9 +253,15 @@ h1 .hl{color:var(--accent);}
 .form-field input:focus,.form-field textarea:focus,.form-field select:focus{border-color:var(--accent);background:white;}
 .submit-btn{background:var(--accent);color:white;border:none;border-radius:10px;padding:.85rem;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:500;cursor:pointer;transition:background .2s,transform .15s;}
 .submit-btn:hover{background:#003ee0;transform:translateY(-2px);}
+ codex/add-recaptcha-for-mailto-link
 .captcha-wrap{background:var(--off-white);border:1px solid var(--border);border-radius:10px;padding:1rem;}
 .captcha-wrap #recaptcha-container{min-height:96px;display:flex;align-items:flex-start;}
 .captcha-status{font-size:.8rem;color:#a16207;margin-top:.2rem;}
+.captcha-wrap{background:var(--off-white);border:1px solid var(--border);border-radius:10px;padding:.75rem;}
+ codex/add-recaptcha-for-mailto-link-i787ps
+.captcha-wrap #recaptcha-container{min-height:86px;display:flex;align-items:flex-start;} main
+.captcha-help{font-size:.76rem;color:var(--text-muted);margin-top:.55rem;line-height:1.5;}
+.captcha-status{font-size:.76rem;color:#a16207;margin-top:.5rem;} main
 .submit-btn:disabled{background:#99b4ff;cursor:not-allowed;transform:none;}
 
 /* FOOTER */
@@ -951,7 +957,8 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
       </div>
       <div class="form-field"><label>Message</label><textarea id="cf-msg" rows="5" placeholder="Tell us what's on your mind..."></textarea></div>
       <div class="captcha-wrap">
-        <div id="recaptcha-container"></div>
+        <div id="recaptcha-container"></div> codex/add-recaptcha-for-mailto-link
+        <p class="captcha-help">Complete reCAPTCHA to unlock email access.</p> main
         <p class="captcha-status" id="captcha-status">reCAPTCHA required before opening your mail app.</p>
       </div>
       <button class="submit-btn" id="send-btn" onclick="sendMail()" disabled>Open in mail app &rarr;</button>
@@ -1174,7 +1181,11 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
       'expired-callback': onCaptchaExpired,
       'error-callback': onCaptchaErrored
     });
+ codex/add-recaptcha-for-mailto-link
     if (recaptchaWidgetId !== null && status) status.textContent = 'reCAPTCHA required before opening your mail app.';
+    if (recaptchaWidgetId !== null && status) {
+      status.textContent = 'Complete reCAPTCHA to unlock email access.';
+    } main
     updateCaptchaState();
   }
 
