@@ -933,7 +933,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
       </div>
     </div>
     <div class="contact-form fade-up" id="contact-form-wrap">
-      <p style="font-size:.78rem;color:var(--text-muted);background:var(--off-white);border-radius:8px;padding:.6rem .9rem;line-height:1.5;">Your name and email are optional — they'll be pre-filled in your mail app if you add them, but the message will draft either way.</p>
+      <p style="font-size:.78rem;color:var(--text-muted);background:var(--off-white);border-radius:8px;padding:.6rem .9rem;line-height:1.5;">Your name and email are optional — they'll be pre-filled in your default mail app if you add them, but the message will draft either way.</p>
       <div class="form-row">
         <div class="form-field"><label>Name <span style="color:var(--text-muted);font-weight:400;">(optional)</span></label><input id="cf-name" type="text" placeholder="Your name"/></div>
         <div class="form-field"><label>Email <span style="color:var(--text-muted);font-weight:400;">(optional)</span></label><input id="cf-email" type="email" placeholder="you@email.com"/></div>
@@ -950,13 +950,15 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
       </div>
       <div class="form-field"><label>Message</label><textarea id="cf-msg" rows="5" placeholder="Tell us what's on your mind..."></textarea></div>
       <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" data-callback="onRecaptchaSuccess" data-expired-callback="onRecaptchaExpired"></div>
+      <p id="captcha-hint" style="font-size:.78rem;color:var(--text-muted);line-height:1.5;">Please complete reCAPTCHA to enable the default mail app button.</p>
+      <button class="submit-btn" id="send-btn" onclick="sendMail()" disabled>Open draft in default mail app &rarr;</button>
       <p id="captcha-hint" style="font-size:.78rem;color:var(--text-muted);line-height:1.5;">Please complete reCAPTCHA to enable the mail button.</p>
       <button class="submit-btn" id="send-btn" onclick="sendMail()" disabled>Open in mail app &rarr;</button>
     </div>
     <!-- sent state — shown after mailto fires -->
     <div id="contact-sent" style="display:none;background:var(--green-light,#e0f8f0);border:1px solid #a0e8cc;border-radius:16px;padding:2rem 1.5rem;text-align:center;">
-      <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:#00835a;margin-bottom:.5rem;">Your mail app should be open.</div>
-      <p style="font-size:.88rem;color:#276749;margin-bottom:1.25rem;">The message has been drafted — just hit send from your mail app. Want to send another? Reload the page.</p>
+      <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:#00835a;margin-bottom:.5rem;">Your default mail app should be open.</div>
+      <p style="font-size:.88rem;color:#276749;margin-bottom:1.25rem;">The message has been drafted — just hit send from your default mail app. Want to send another? Reload the page.</p>
       <button onclick="window.location.reload()" style="background:#00835a;color:white;border:none;border-radius:8px;padding:.6rem 1.4rem;font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:500;cursor:pointer;">Reload page</button>
     </div>
   </div>
@@ -1090,7 +1092,8 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     const sendBtn = document.getElementById('send-btn');
     const hint = document.getElementById('captcha-hint');
     if (sendBtn) sendBtn.disabled = false;
-    if (hint) hint.textContent = 'Verification complete. You can now open your draft email.';
+    if (hint) hint.textContent = 'Verification complete. You can now open your draft in your default mail app.';
+    if (hint) hint.textContent = 'Verification complete. You can now open your draft email.'; main
   }
 
   function onRecaptchaExpired() {
