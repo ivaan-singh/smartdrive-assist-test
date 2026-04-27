@@ -952,6 +952,8 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
       <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" data-callback="onRecaptchaSuccess" data-expired-callback="onRecaptchaExpired"></div>
       <p id="captcha-hint" style="font-size:.78rem;color:var(--text-muted);line-height:1.5;">Please complete reCAPTCHA to enable the default mail app button.</p>
       <button class="submit-btn" id="send-btn" onclick="sendMail()" disabled>Open draft in default mail app &rarr;</button>
+      <p id="captcha-hint" style="font-size:.78rem;color:var(--text-muted);line-height:1.5;">Please complete reCAPTCHA to enable the mail button.</p>
+      <button class="submit-btn" id="send-btn" onclick="sendMail()" disabled>Open in mail app &rarr;</button>
     </div>
     <!-- sent state — shown after mailto fires -->
     <div id="contact-sent" style="display:none;background:var(--green-light,#e0f8f0);border:1px solid #a0e8cc;border-radius:16px;padding:2rem 1.5rem;text-align:center;">
@@ -1091,6 +1093,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     const hint = document.getElementById('captcha-hint');
     if (sendBtn) sendBtn.disabled = false;
     if (hint) hint.textContent = 'Verification complete. You can now open your draft in your default mail app.';
+    if (hint) hint.textContent = 'Verification complete. You can now open your draft email.'; main
   }
 
   function onRecaptchaExpired() {
