@@ -6,6 +6,7 @@
 <title>SmartDrive Assist — Mobility, Reimagined</title>
 <link rel="icon" type="image/svg+xml" href="../images/favicon.svg"/>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet"/>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
@@ -253,6 +254,10 @@ h1 .hl{color:var(--accent);}
 .form-field input:focus,.form-field textarea:focus,.form-field select:focus{border-color:var(--accent);background:white;}
 .submit-btn{background:var(--accent);color:white;border:none;border-radius:10px;padding:.85rem;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:500;cursor:pointer;transition:background .2s,transform .15s;}
 .submit-btn:hover{background:#003ee0;transform:translateY(-2px);}
+.submit-btn:disabled{background:#c8d6ff;color:#6b7ab0;cursor:not-allowed;transform:none;}
+.submit-btn:disabled:hover{background:#c8d6ff;transform:none;}
+.captcha-wrap{display:flex;flex-direction:column;gap:.4rem;}
+.captcha-note{font-size:.76rem;color:var(--text-muted);}
 
 /* FOOTER */
 footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:2rem;}
@@ -946,12 +951,16 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
         </select>
       </div>
       <div class="form-field"><label>Message</label><textarea id="cf-msg" rows="5" placeholder="Tell us what's on your mind..."></textarea></div>
-      <button class="submit-btn" id="send-btn" onclick="sendMail()">Open in mail app &rarr;</button>
+      <div class="captcha-wrap">
+        <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" data-callback="enableMailDraft" data-expired-callback="disableMailDraft"></div>
+        <div class="captcha-note">Complete the reCAPTCHA to enable drafting your email.</div>
+      </div>
+      <button class="submit-btn" id="send-btn" onclick="sendMail()" disabled>Open draft in default mail app &rarr;</button>
     </div>
     <!-- sent state — shown after mailto fires -->
     <div id="contact-sent" style="display:none;background:var(--green-light,#e0f8f0);border:1px solid #a0e8cc;border-radius:16px;padding:2rem 1.5rem;text-align:center;">
-      <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:#00835a;margin-bottom:.5rem;">Your mail app should be open.</div>
-      <p style="font-size:.88rem;color:#276749;margin-bottom:1.25rem;">The message has been drafted — just hit send from your mail app. Want to send another? Reload the page.</p>
+      <div style="font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;color:#00835a;margin-bottom:.5rem;">Your default mail app should be open.</div>
+      <p style="font-size:.88rem;color:#276749;margin-bottom:1.25rem;">The draft is ready for siraajpabby@gmail.com and ivaansingh.k@gmail.com — just hit send. Want to create another draft? Reload the page.</p>
       <button onclick="window.location.reload()" style="background:#00835a;color:white;border:none;border-radius:8px;padding:.6rem 1.4rem;font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:500;cursor:pointer;">Reload page</button>
     </div>
   </div>
@@ -1081,8 +1090,21 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     if (isOpen) setTimeout(() => drawer.scrollIntoView({behavior:'smooth', block:'nearest'}), 50);
   }
 
-  // SEND MAIL — opens default mail app, then hides the form
+  function enableMailDraft() {
+    const sendBtn = document.getElementById('send-btn');
+    if (sendBtn) sendBtn.disabled = false;
+  }
+
+  function disableMailDraft() {
+    const sendBtn = document.getElementById('send-btn');
+    if (sendBtn) sendBtn.disabled = true;
+  }
+
+  // SEND MAIL — opens user's default mail app, then hides the form
   function sendMail() {
+    const sendBtn = document.getElementById('send-btn');
+    if (sendBtn && sendBtn.disabled) return;
+
     const name    = (document.getElementById('cf-name').value  || '').trim();
     const email   = (document.getElementById('cf-email').value || '').trim();
     const reason  = document.getElementById('cf-reason').value;
@@ -1094,7 +1116,8 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     if (email) body += 'Email: ' + email + '\n';
     body += '\n' + (msg || '(no message entered)');
 
-    window.location.href = 'mailto:?subject=' + subject + '&body=' + encodeURIComponent(body);
+    const recipients = 'siraajpabby@gmail.com,ivaansingh.k@gmail.com';
+    window.location.href = 'mailto:' + recipients + '?subject=' + subject + '&body=' + encodeURIComponent(body);
 
     // hide form, show sent state
     document.getElementById('contact-form-wrap').style.display = 'none';
