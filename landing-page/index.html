@@ -206,6 +206,19 @@ h1 .hl{color:var(--accent);}
 .spec-val{color:white;font-weight:500;}
 .spec-val.ac{color:var(--accent-mid);}
 
+
+/* ── PAGE: MODELS ── */
+#pg-models{}
+.models-wrap{padding:60px 5% 80px;max-width:1120px;margin:0 auto;}
+.models-hero{text-align:center;max-width:670px;margin:0 auto 2.4rem;}
+.models-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;}
+.model-card{background:var(--white);border:1px solid var(--border);border-radius:18px;padding:1.6rem;display:flex;flex-direction:column;gap:.8rem;transition:transform .2s,box-shadow .2s,border-color .2s;}
+.model-card:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:0 10px 30px rgba(0,87,255,.08);}
+.model-price{font-family:'Syne',sans-serif;font-size:1.7rem;font-weight:800;letter-spacing:-.02em;color:var(--accent);line-height:1.1;}
+.model-features{list-style:none;display:flex;flex-direction:column;gap:.55rem;}
+.model-features li{font-size:.85rem;color:var(--text-muted);line-height:1.55;padding-left:1.05rem;position:relative;}
+.model-features li::before{content:'•';position:absolute;left:0;top:0;color:var(--accent);font-weight:700;}
+
 /* ── PAGE: ABOUT ── */
 #pg-about{}
 .about-hero{padding:60px 5% 80px;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;max-width:1200px;margin:0 auto;}
@@ -274,7 +287,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
 @media(max-width:900px){
   #hero,.about-hero,.contact-wrap{grid-template-columns:1fr;gap:2.5rem;}
   #hero{min-height:auto;}
-  .hiw-steps,.feat-grid-hero,.specs-grid,.testi-grid{grid-template-columns:1fr;}
+  .hiw-steps,.feat-grid-hero,.specs-grid,.testi-grid,.models-grid{grid-template-columns:1fr;}
   .more-drawer.open{grid-template-columns:1fr 1fr;}
   #stats-bar{grid-template-columns:1fr 1fr;}
   .faq-layout{grid-template-columns:1fr;}
@@ -310,6 +323,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
   <ul class="nav-links">
     <li><a onclick="showPage('home')" id="nl-home">Home</a></li>
     <li><a onclick="showPage('features')" id="nl-features">Features</a></li>
+    <li><a onclick="showPage('models')" id="nl-models">Models</a></li>
     <li><a onclick="showPage('about')" id="nl-about">About</a></li>
     <li><a onclick="showPage('faq')" id="nl-faq">FAQ</a></li>
     <li><a onclick="showPage('contact')" id="nl-contact">Contact</a></li>
@@ -495,6 +509,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
       <ul>
         <li><button onclick="showPage('features')">Features</button></li>
         <li><button onclick="showPage('features')">How it works</button></li>
+        <li><button onclick="showPage('models')">Models</button></li>
         <li><button onclick="showPage('features')">Specifications</button></li>
         <li><button onclick="showPage('faq')">FAQ</button></li>
       </ul>
@@ -653,18 +668,18 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     </div>
   </div>
 
-  <!-- PAGE NAV: Features → About -->
-  <button class="page-nav-banner light-prev" onclick="showPage('about')">
+  <!-- PAGE NAV: Features → Models -->
+  <button class="page-nav-banner light-prev" onclick="showPage('models')">
     <div class="pnb-left">
-      <div class="pnb-eyebrow">Next &mdash; About screen</div>
-      <div class="pnb-title">Built by students.<br/><span>Built for impact.</span></div>
-      <div class="pnb-sub">Our mission, the team, FAQ</div>
+      <div class="pnb-eyebrow">Next &mdash; Models screen</div>
+      <div class="pnb-title">Pick the build.<br/><span>Scale as you go.</span></div>
+      <div class="pnb-sub">Phase-wise model plans and pricing</div>
     </div>
     <div class="pnb-right">
       <div class="pnb-dots">
         <div class="pnb-dot"></div>
-        <div class="pnb-dot on"></div>
         <div class="pnb-dot"></div>
+        <div class="pnb-dot on"></div>
         <div class="pnb-dot"></div>
       </div>
       <div class="pnb-arrow">
@@ -683,6 +698,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
       <ul>
         <li><button onclick="showPage('features')">Features</button></li>
         <li><button onclick="showPage('features')">How it works</button></li>
+        <li><button onclick="showPage('models')">Models</button></li>
         <li><button onclick="showPage('features')">Specifications</button></li>
         <li><button onclick="showPage('faq')">FAQ</button></li>
       </ul>
@@ -711,11 +727,119 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
 </div><!-- end pg-features -->
 
 
-<!-- ════════════════ PAGE: ABOUT ════════════════ -->
-<div class="pg" id="pg-about">
+<!-- ════════════════ PAGE: MODELS ════════════════ -->
+<div class="pg" id="pg-models">
   <button class="back-btn" onclick="showPage('features')">
     <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
     Back to Features
+  </button>
+
+  <div class="models-wrap">
+    <div class="models-hero fade-up">
+      <div class="section-tag">Models</div>
+      <h2 class="section-title">Choose your SmartDrive Assist phase.</h2>
+      <p class="section-sub" style="margin:0 auto;">Start with essential controls and upgrade to advanced safety and AI capabilities as needed.</p>
+    </div>
+
+    <div class="models-grid">
+      <div class="model-card fade-up">
+        <span class="feat-tag-pill t-control">Phase 1</span>
+        <div class="feat-name">Core Control Model</div>
+        <div class="model-price">₹13,500</div>
+        <ul class="model-features">
+          <li>Simple manual / electric mode toggle</li>
+          <li>Direction control and speed control</li>
+          <li>Brake control with emergency panic button</li>
+        </ul>
+      </div>
+
+      <div class="model-card fade-up">
+        <span class="feat-tag-pill t-sensors">Phase 2</span>
+        <div class="feat-name">Safety + Connectivity Model</div>
+        <div class="model-price">₹20,000</div>
+        <ul class="model-features">
+          <li>Everything in Phase 1</li>
+          <li>Edge detection for drop-off prevention</li>
+          <li>Obstacle detection with smart stopping</li>
+          <li>Bluetooth support for wireless control</li>
+        </ul>
+      </div>
+
+      <div class="model-card fade-up">
+        <span class="feat-tag-pill t-emergency">Phase 3</span>
+        <div class="feat-name">AI + Emergency Model</div>
+        <div class="model-price">₹40,000</div>
+        <ul class="model-features">
+          <li>Everything in Phase 2</li>
+          <li>AI-powered assistive features</li>
+          <li>SOS calling and real-time alert support</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE NAV: Models → About -->
+  <button class="page-nav-banner light-prev" onclick="showPage('about')">
+    <div class="pnb-left">
+      <div class="pnb-eyebrow">Next &mdash; About screen</div>
+      <div class="pnb-title">Built by students.<br/><span>Built for impact.</span></div>
+      <div class="pnb-sub">Our mission, the team, FAQ</div>
+    </div>
+    <div class="pnb-right">
+      <div class="pnb-dots">
+        <div class="pnb-dot"></div>
+        <div class="pnb-dot"></div>
+        <div class="pnb-dot"></div>
+        <div class="pnb-dot on"></div>
+      </div>
+      <div class="pnb-arrow">
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+    </div>
+  </button>
+
+  <footer>
+    <div class="foot-brand">
+      <button class="foot-logo" onclick="showPage('home')">SmartDrive <span>Assist.</span></button>
+      <p>A TechCare Warriors initiative. Making smart mobility accessible for everyone, everywhere.</p>
+    </div>
+    <div class="foot-col">
+      <h5>Product</h5>
+      <ul>
+        <li><button onclick="showPage('features')">Features</button></li>
+        <li><button onclick="showPage('models')">Models</button></li>
+        <li><button onclick="showPage('features')">Specifications</button></li>
+        <li><button onclick="showPage('faq')">FAQ</button></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>About</h5>
+      <ul>
+        <li><button onclick="showPage('about')">Our mission</button></li>
+        <li><a href="https://ivaansingh.com/techcare-warriors" target="_blank">TechCare Warriors</a></li>
+        <li><a href="https://ivaansingh.com/techcare-warriors/behind-the-build/" target="_blank">Behind the Build</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h5>Connect</h5>
+      <ul>
+        <li><button onclick="showPage('contact')">Get in touch</button></li>
+        <li><a href="https://ivaan-singh.github.io" target="_blank">Team site</a></li>
+      </ul>
+    </div>
+  </footer>
+  <div class="foot-bottom">
+    <span>2025 SmartDrive Assist &middot; TechCare Warriors &middot; Gurugram, India</span>
+    <span>A student innovation project</span>
+  </div>
+
+</div><!-- end pg-models -->
+
+<!-- ════════════════ PAGE: ABOUT ════════════════ -->
+<div class="pg" id="pg-about">
+  <button class="back-btn" onclick="showPage('models')">
+    <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+    Back to Models
   </button>
   <div class="about-hero">
     <div class="fade-up">
@@ -793,6 +917,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
       <ul>
         <li><button onclick="showPage('features')">Features</button></li>
         <li><button onclick="showPage('features')">How it works</button></li>
+        <li><button onclick="showPage('models')">Models</button></li>
         <li><button onclick="showPage('features')">Specifications</button></li>
         <li><button onclick="showPage('faq')">FAQ</button></li>
       </ul>
@@ -890,6 +1015,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
       <ul>
         <li><button onclick="showPage('features')">Features</button></li>
         <li><button onclick="showPage('features')">How it works</button></li>
+        <li><button onclick="showPage('models')">Models</button></li>
         <li><button onclick="showPage('features')">Specifications</button></li>
         <li><button onclick="showPage('faq')">FAQ</button></li>
       </ul>
@@ -995,6 +1121,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
       <ul>
         <li><button onclick="showPage('features')">Features</button></li>
         <li><button onclick="showPage('features')">How it works</button></li>
+        <li><button onclick="showPage('models')">Models</button></li>
         <li><button onclick="showPage('features')">Specifications</button></li>
         <li><button onclick="showPage('faq')">FAQ</button></li>
       </ul>
@@ -1023,7 +1150,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
 </div><!-- end pg-contact -->
 
 <script>
-  const VALID_PAGES = ['home','features','about','faq','contact'];
+  const VALID_PAGES = ['home','features','models','about','faq','contact'];
 
   // PAGE ROUTER
   function showPage(id) {
@@ -1036,7 +1163,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     closeDrop();
     setTimeout(initFades, 50);
     // update active nav link
-    ['home','features','about','faq','contact'].forEach(p => {
+    ['home','features','models','about','faq','contact'].forEach(p => {
       const el = document.getElementById('nl-' + p);
       if(el) el.style.color = (p === id) ? 'var(--text-dark)' : '';
     });
