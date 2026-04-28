@@ -322,6 +322,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
   </a>
   <ul class="nav-links">
     <li><a onclick="showPage('home')" id="nl-home">Home</a></li>
+    <li><a onclick="showPage('features')" id="nl-features">How it works</a></li>
     <li><a onclick="showPage('features')" id="nl-features">Features</a></li>
     <li><a onclick="showPage('models')" id="nl-models">Models</a></li>
     <li><a onclick="showPage('about')" id="nl-about">About</a></li>
@@ -341,7 +342,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
       <h1>Mobility is a right,<br/><span class="hl">not a privilege.</span></h1>
       <p class="hero-sub">SmartDrive Assist is a bolt-on intelligent system that upgrades any manual wheelchair into a full-featured smart mobility aid — no replacement needed, at a target price of just Rs. 10,000.</p>
       <div class="btn-group">
-        <button class="btn-primary" onclick="showPage('features')">Explore features</button>
+        <button class="btn-primary" onclick="showPage('features')">Explore how it works</button>
         <button class="hero-link" onclick="showPage('features')">How it works &rarr;</button>
       </div>
       <div class="hero-trust">
@@ -481,9 +482,9 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
   <!-- PAGE NAV: Home → Features -->
   <button class="page-nav-banner light-prev" onclick="showPage('features')">
     <div class="pnb-left">
-      <div class="pnb-eyebrow">Next &mdash; Features screen</div>
+      <div class="pnb-eyebrow">Next &mdash; How it works screen</div>
       <div class="pnb-title">Built different.<br/><span>Engineered smarter.</span></div>
-      <div class="pnb-sub">9 smart modules, how it works, full specs</div>
+      <div class="pnb-sub">How it works, safety flow, full specs</div>
     </div>
     <div class="pnb-right">
       <div class="pnb-dots">
@@ -507,7 +508,6 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     <div class="foot-col">
       <h5>Product</h5>
       <ul>
-        <li><button onclick="showPage('features')">Features</button></li>
         <li><button onclick="showPage('features')">How it works</button></li>
         <li><button onclick="showPage('models')">Models</button></li>
         <li><button onclick="showPage('features')">Specifications</button></li>
@@ -544,73 +544,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
     Back to Home
   </button>
-  <div class="features-hero fade-up">
-    <div class="section-tag">Features</div>
-    <h2 class="section-title">Built different.<br/>Engineered smarter.</h2>
-    <p class="section-sub">Nine smart capabilities in one modular add-on — no chair replacement, no rewiring, no compromise.</p>
-  </div>
-
-  <div class="feat-grid-hero fade-up">
-    <div class="feat-card feat-highlight">
-      <span class="feat-tag-pill t-flex">Flexibility</span>
-      <div class="feat-name">Manual / Electric Toggle</div>
-      <p class="feat-desc">Seamless switching between modes — electric for convenience, manual as backup. Always your choice, always instant.</p>
-    </div>
-    <div class="feat-card">
-      <span class="feat-tag-pill t-sensors">Sensors</span>
-      <div class="feat-name">Obstacle Detection</div>
-      <p class="feat-desc">IR sensors detect obstacles ahead and automatically slow or stop the chair before any impact.</p>
-    </div>
-    <div class="feat-card">
-      <span class="feat-tag-pill t-emergency">Emergency</span>
-      <div class="feat-name">SOS Alerts</div>
-      <p class="feat-desc">One-button emergency alert triggers instant notification to all pre-set emergency contacts.</p>
-    </div>
-    <div class="feat-card">
-      <span class="feat-tag-pill t-power">Power</span>
-      <div class="feat-name">Auto-Recharging</div>
-      <p class="feat-desc">A dynamo motor harvests kinetic energy while the chair is pushed manually — self-charging in motion, no plug needed.</p>
-    </div>
-    <div class="feat-card">
-      <span class="feat-tag-pill t-sensors">Sensors</span>
-      <div class="feat-name">Edge Detection</div>
-      <p class="feat-desc">Ultrasonic sensors detect drop-offs like steps and curbs, preventing dangerous falls before they happen.</p>
-    </div>
-    <div class="feat-card" onclick="toggleMore()" style="display:flex;flex-direction:column;justify-content:center;align-items:center;background:#f7f8f9;border:1.5px dashed #d1d5db;text-align:center;gap:.45rem;min-height:160px;cursor:pointer;transition:background .2s,border-color .2s;">
-      <p style="font-family:'Syne',sans-serif;font-weight:600;font-size:.88rem;color:#9ca3af;">+ 4 more features</p>
-      <p style="font-size:.77rem;color:#b0b7c0;">GPS &middot; Voice Control &middot; BT Remote &middot; Simple UI</p>
-    </div>
-  </div>
-
-  <div class="more-features-wrap">
-    <button class="more-toggle" id="moreBtn" onclick="toggleMore()">
-      <span id="moreBtnText">Show all features</span> <span class="arr">&#9660;</span>
-    </button>
-    <div class="more-drawer" id="moreDrawer">
-      <div class="feat-card">
-        <span class="feat-tag-pill t-safety">Safety</span>
-        <div class="feat-name">GPS Tracking</div>
-        <p class="feat-desc">Real-time location sharing so caregivers always know where the user is.</p>
-      </div>
-      <div class="feat-card">
-        <span class="feat-tag-pill t-access">Accessibility</span>
-        <div class="feat-name">Voice Control</div>
-        <p class="feat-desc">Hands-free navigation commands for users with limited upper body mobility.</p>
-      </div>
-      <div class="feat-card">
-        <span class="feat-tag-pill t-control">Control</span>
-        <div class="feat-name">Bluetooth Remote</div>
-        <p class="feat-desc">Full control from a smartphone app or dedicated BT remote unit.</p>
-      </div>
-      <div class="feat-card">
-        <span class="feat-tag-pill t-ux">UX</span>
-        <div class="feat-name">Simple UI</div>
-        <p class="feat-desc">Designed for limited dexterity — large buttons, high contrast, minimal learning curve.</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- HOW IT WORKS -->
+    <!-- HOW IT WORKS -->
   <div class="hiw-band">
     <div class="hiw-header fade-up">
       <div class="section-tag">How it works</div>
@@ -731,7 +665,11 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
 <div class="pg" id="pg-models">
   <button class="back-btn" onclick="showPage('features')">
     <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+
+    Back to How it works
+
     Back to Features
+
   </button>
 
   <div class="models-wrap">
@@ -771,6 +709,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
         <div class="feat-name">AI + Emergency Model</div>
         <div class="model-price">₹40,000</div>
         <ul class="model-features">
+          <li>Everything in the previous phase</li>
           <li>Everything in Phase 2</li>
           <li>AI-powered assistive features</li>
           <li>SOS calling and real-time alert support</li>
@@ -807,6 +746,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     <div class="foot-col">
       <h5>Product</h5>
       <ul>
+        <li><button onclick="showPage('features')">How it works</button></li>
         <li><button onclick="showPage('features')">Features</button></li>
         <li><button onclick="showPage('models')">Models</button></li>
         <li><button onclick="showPage('features')">Specifications</button></li>
@@ -916,7 +856,6 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     <div class="foot-col">
       <h5>Product</h5>
       <ul>
-        <li><button onclick="showPage('features')">Features</button></li>
         <li><button onclick="showPage('features')">How it works</button></li>
         <li><button onclick="showPage('models')">Models</button></li>
         <li><button onclick="showPage('features')">Specifications</button></li>
@@ -1014,7 +953,6 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     <div class="foot-col">
       <h5>Product</h5>
       <ul>
-        <li><button onclick="showPage('features')">Features</button></li>
         <li><button onclick="showPage('features')">How it works</button></li>
         <li><button onclick="showPage('models')">Models</button></li>
         <li><button onclick="showPage('features')">Specifications</button></li>
@@ -1120,7 +1058,6 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     <div class="foot-col">
       <h5>Product</h5>
       <ul>
-        <li><button onclick="showPage('features')">Features</button></li>
         <li><button onclick="showPage('features')">How it works</button></li>
         <li><button onclick="showPage('models')">Models</button></li>
         <li><button onclick="showPage('features')">Specifications</button></li>
