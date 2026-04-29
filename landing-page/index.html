@@ -357,6 +357,8 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
         <!-- Full logo displayed prominently -->
         <div style="margin-bottom:1.25rem;display:inline-block;border:10px solid var(--accent);border-radius:18px;padding:6px;background:#fff;">
           <img src="../images/logo.png" alt="SmartDrive Assist logo" style="width:100%;max-width:320px;display:block;margin:0 auto;border-radius:10px;"/>
+        <div style="margin-bottom:1.25rem;">
+          <img src="../images/logo.png" alt="SmartDrive Assist logo" style="width:100%;max-width:320px;display:block;margin:0 auto;border:4px solid var(--accent);border-radius:14px;"/>
         </div>
       </div>
     </div>
@@ -424,7 +426,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
         </div>
         <div style="background:var(--off-white);border-radius:14px;padding:1.25rem;">
           <div style="font-family:'Syne',sans-serif;font-size:1.6rem;font-weight:800;color:var(--accent);line-height:1;">9</div>
-          <div style="font-size:.78rem;color:var(--text-muted);margin-top:4px;">smart modules built-in</div>
+          <div style="font-size:.78rem;color:var(--text-muted);margin-top:4px;">smart features built-in</div>
         </div>
       </div>
     </div>
@@ -438,7 +440,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
           <div class="section-tag">What it does</div>
           <h2 class="section-title" style="font-size:clamp(1.5rem,2.8vw,2.1rem);margin-bottom:0;">Key capabilities at a glance.</h2>
         </div>
-        <button onclick="showPage('features')" style="font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:500;color:var(--accent);background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:.3rem;flex-shrink:0;">See how it works &rarr;</button>
+        <button onclick="showPage('features')" style="font-family:'DM Sans',sans-serif;font-size:.85rem;font-weight:500;color:var(--accent);background:none;border:none;cursor:pointer;display:flex;align-items:center;gap:.3rem;flex-shrink:0;">See all features &rarr;</button>
       </div>
       <div class="home-feat-grid">
         <div style="background:var(--white);border:1px solid var(--border);border-radius:14px;padding:1.25rem 1.4rem;display:flex;align-items:flex-start;gap:.9rem;">
@@ -478,7 +480,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     </div>
   </div>
 
-  <!-- PAGE NAV: Home → How it works -->
+  <!-- PAGE NAV: Home → Features -->
   <button class="page-nav-banner light-prev" onclick="showPage('features')">
     <div class="pnb-left">
       <div class="pnb-eyebrow">Next &mdash; How it works screen</div>
@@ -601,7 +603,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     </div>
   </div>
 
-  <!-- PAGE NAV: How it works → Models -->
+  <!-- PAGE NAV: Features → Models -->
   <button class="page-nav-banner light-prev" onclick="showPage('models')">
     <div class="pnb-left">
       <div class="pnb-eyebrow">Next &mdash; Models screen</div>
@@ -709,7 +711,6 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
         <div class="model-price">₹40,000</div>
         <ul class="model-features">
           <li>Everything in the previous phase</li>
-          <li>AI-powered assistive tools</li>
           <li>Everything in Phase 2</li>
           <li>AI-powered assistive features</li>
           <li>SOS calling and real-time alert support</li>
@@ -1151,7 +1152,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     const txt = document.getElementById('moreBtnText');
     const isOpen = drawer.classList.toggle('open');
     btn.classList.toggle('open', isOpen);
-    txt.textContent = isOpen ? 'Show fewer details' : 'Show all details';
+    txt.textContent = isOpen ? 'Show fewer features' : 'Show all features';
     if (isOpen) setTimeout(() => drawer.scrollIntoView({behavior:'smooth', block:'nearest'}), 50);
   }
 
