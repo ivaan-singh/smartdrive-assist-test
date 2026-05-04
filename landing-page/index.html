@@ -1329,6 +1329,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
       el.classList.add('meeting-focus');
       el.scrollIntoView({ behavior: 'smooth', block: 'center' });
       setTimeout(() => el.classList.remove('meeting-focus'), 5000);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }, 120);
   }
 
