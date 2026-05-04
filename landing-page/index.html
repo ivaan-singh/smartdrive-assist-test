@@ -168,6 +168,9 @@ h1 .hl{color:var(--accent);}
 .testi-link-btn{background:var(--accent-light);color:var(--accent);border:1px solid rgba(0,87,255,.2);padding:.5rem .9rem;border-radius:999px;font-size:.78rem;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;transition:background .2s,transform .15s;}
 .testi-link-btn:hover{background:#d7e5ff;transform:translateY(-1px);}
 
+.meeting-focus{border-color:var(--accent)!important;animation:meetingBlink 1.2s ease-in-out 4;box-shadow:0 0 0 3px rgba(0,87,255,.22),0 12px 30px rgba(0,87,255,.16);}
+@keyframes meetingBlink{0%,100%{box-shadow:0 0 0 2px rgba(0,87,255,.18),0 8px 24px rgba(0,87,255,.1);}50%{box-shadow:0 0 0 6px rgba(0,87,255,.35),0 14px 34px rgba(0,87,255,.22);}}
+
 /* ── PAGE: FEATURES ── */
 #pg-features{}
 /* BACK BUTTON */
@@ -1321,6 +1324,11 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     showPage('gallery');
     setTimeout(() => {
       const el = document.getElementById(meetingId);
+      if (!el) return;
+      document.querySelectorAll('#pg-gallery .meeting-focus').forEach(card => card.classList.remove('meeting-focus'));
+      el.classList.add('meeting-focus');
+      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(() => el.classList.remove('meeting-focus'), 5000);
       if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }, 120);
   }
