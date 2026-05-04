@@ -164,6 +164,9 @@ h1 .hl{color:var(--accent);}
 .testi-avatar{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;font-size:.85rem;color:white;flex-shrink:0;}
 .testi-name{font-family:'Syne',sans-serif;font-weight:700;font-size:.88rem;}
 .testi-role{font-size:.77rem;color:var(--text-muted);}
+.testi-actions{margin-top:1rem;}
+.testi-link-btn{background:var(--accent-light);color:var(--accent);border:1px solid rgba(0,87,255,.2);padding:.5rem .9rem;border-radius:999px;font-size:.78rem;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;transition:background .2s,transform .15s;}
+.testi-link-btn:hover{background:#d7e5ff;transform:translateY(-1px);}
 
 /* ── PAGE: FEATURES ── */
 #pg-features{}
@@ -482,6 +485,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
             <div class="testi-role">Wheelchair user</div>
           </div>
         </div>
+        <div class="testi-actions"><button class="testi-link-btn" onclick="openGalleryMeeting('meeting-vinod-kumar')">See the meeting</button></div>
       </div>
       <div class="testi-card">
         <p class="testi-quote">Affordability is critical. A retrofit approach can open up smart mobility to people who cannot replace their existing chair.</p>
@@ -492,6 +496,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
             <div class="testi-role">Wheelchair user interviews</div>
           </div>
         </div>
+        <div class="testi-actions"><button class="testi-link-btn" onclick="showPage('gallery')">See the meeting</button></div>
       </div>
     </div>
   </div>
@@ -513,6 +518,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
             <div class="testi-role">Director, BraveHeart Soldier Foundation</div>
           </div>
         </div>
+        <div class="testi-actions"><button class="testi-link-btn" onclick="openGalleryMeeting('meeting-anuj-sharma')">See the meeting</button></div>
       </div>
       <div class="testi-card">
         <p class="testi-quote">You have a very strong point of view and a great concept. You have identified a real problem that affects millions in India.</p>
@@ -523,6 +529,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
             <div class="testi-role">CEO, AssisTech Foundation</div>
           </div>
         </div>
+        <div class="testi-actions"><button class="testi-link-btn" onclick="openGalleryMeeting('meeting-prateek-madhav')">See the meeting</button></div>
       </div>
     </div>
   </div>
@@ -1044,15 +1051,15 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
         <p class="section-sub">Key videos and assets from competitions, mentorship meetings, and user conversations.</p>
       </div>
       <div class="fade-up" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem;">
-        <div class="testi-card">
+        <div class="testi-card" id="meeting-anuj-sharma">
           <iframe width="100%" height="220" src="https://www.youtube.com/embed/B7kv7ZeWvPI" title="Codeavour 7.0 — 2nd in India nationals" style="border:0;border-radius:12px;" allowfullscreen></iframe>
           <p style="margin-top:.7rem;font-size:.84rem;color:var(--text-muted);"><strong style="color:var(--text-dark);">Codeavour 7.0 — 2nd in India nationals</strong></p>
         </div>
-        <div class="testi-card">
+        <div class="testi-card" id="meeting-prateek-madhav">
           <iframe width="100%" height="220" src="https://www.youtube.com/embed/BdXLWOQJgtA" title="Meeting with Prateek Madhav" style="border:0;border-radius:12px;" allowfullscreen></iframe>
           <p style="margin-top:.7rem;font-size:.84rem;color:var(--text-muted);">Meeting with <strong style="color:var(--text-dark);">Prateek Madhav</strong></p>
         </div>
-        <div class="testi-card">
+        <div class="testi-card" id="meeting-vinod-kumar">
           <iframe width="100%" height="220" src="https://www.youtube.com/embed/tIm-6OMf9_Y" title="Meeting with Mr. Vinod Kumar, wheelchair user" style="border:0;border-radius:12px;" allowfullscreen></iframe>
           <p style="margin-top:.7rem;font-size:.84rem;color:var(--text-muted);">Meeting with <strong style="color:var(--text-dark);">Mr. Vinod Kumar, wheelchair user</strong></p>
         </div>
@@ -1307,6 +1314,15 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
       const el = document.getElementById('nl-' + p);
       if(el) el.style.color = (p === id) ? 'var(--text-dark)' : '';
     });
+  }
+
+
+  function openGalleryMeeting(meetingId) {
+    showPage('gallery');
+    setTimeout(() => {
+      const el = document.getElementById(meetingId);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 120);
   }
 
   // handle browser back/forward
