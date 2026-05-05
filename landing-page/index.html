@@ -178,6 +178,13 @@ h1 .hl{color:var(--accent);}
 .endorsement-modal-content{position:relative;width:min(95vw,1080px);height:min(90vh,840px);background:#111;border-radius:14px;padding:3.2rem 1rem 1rem;}
 .endorsement-modal iframe{width:100%;height:100%;border:0;border-radius:10px;background:white;}
 .endorsement-ctrl{position:absolute;top:.7rem;right:.8rem;border:1px solid rgba(255,255,255,.3);background:rgba(0,0,0,.65);color:#fff;border-radius:999px;padding:.38rem .72rem;font-size:.8rem;font-weight:600;cursor:pointer;z-index:5;}
+.endorsement-hitbox{position:absolute;top:.7rem;right:.7rem;border:1px solid rgba(0,87,255,.35);background:rgba(255,255,255,.92);color:var(--accent);cursor:pointer;border-radius:999px;z-index:2;font-size:.75rem;font-weight:700;padding:.35rem .65rem;}
+.endorsement-hitbox{position:absolute;inset:0;border:0;background:transparent;cursor:zoom-in;border-radius:12px;z-index:2;}
+.endorsement-modal{position:fixed;inset:0;background:rgba(0,0,0,.78);display:none;align-items:center;justify-content:center;z-index:1200;padding:1.5rem;}
+.endorsement-modal.open{display:flex;}
+.endorsement-modal-content{position:relative;width:min(95vw,1080px);height:min(90vh,840px);background:#111;border-radius:14px;padding:3.2rem 1rem 1rem;}
+.endorsement-modal iframe{width:100%;height:100%;border:0;border-radius:10px;background:white;}
+.endorsement-ctrl{position:absolute;top:.7rem;right:.8rem;border:1px solid rgba(255,255,255,.3);background:rgba(0,0,0,.5);color:#fff;border-radius:999px;padding:.38rem .72rem;font-size:.8rem;font-weight:600;cursor:pointer;}
 .endorsement-ctrl:hover{background:rgba(0,87,255,.7);border-color:rgba(0,87,255,.9);}
 
 
@@ -734,11 +741,6 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
   <button class="back-btn" onclick="showPage('features')">
     <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
     Back to How it works
-                                                         
-    Back to How it works
-
-    Back to Features
-
   </button>
 
   <div class="models-wrap">
@@ -1079,6 +1081,10 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
         <div class="testi-card endorsement-card" id="asset-endorsement">
           <iframe width="100%" height="220" src="../images/endorsement.pdf#view=FitH" title="Endorsement document (PDF)" style="border:0;border-radius:12px;background:var(--off-white);" loading="lazy"></iframe>
           <button class="endorsement-hitbox" aria-label="Zoom in to endorsement" onclick="event.stopPropagation();openEndorsementModal()">Zoom in</button>
+        <div class="testi-card endorsement-card" id="asset-endorsement" onclick="openEndorsementModal()">
+          <iframe width="100%" height="220" src="../images/endorsement.pdf#view=FitH" title="Endorsement document (PDF)" style="border:0;border-radius:12px;background:var(--off-white);" loading="lazy"></iframe>
+          <button class="endorsement-hitbox" aria-label="Zoom in to endorsement" onclick="event.stopPropagation();openEndorsementModal()">Zoom in</button>
+          <button class="endorsement-hitbox" aria-label="Open endorsement preview" onclick="event.stopPropagation();openEndorsementModal()"></button>
           <p style="margin-top:.7rem;font-size:.84rem;color:var(--text-muted);"><strong style="color:var(--text-dark);">Endorsement</strong> (PDF document)</p>
         </div>
         <div class="testi-card">
@@ -1138,6 +1144,8 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     <div class="endorsement-modal-content" onclick="event.stopPropagation()">
       <button class="endorsement-ctrl" id="endorsement-toggle" onclick="closeEndorsementModal()" aria-label="Zoom out of endorsement">Zoom out</button>
       <iframe id="endorsement-modal-frame" src="../images/endorsement.pdf#zoom=page-fit" title="Full endorsement document (PDF)"></iframe>
+      <button class="endorsement-ctrl" id="endorsement-toggle" onclick="toggleEndorsementZoom()" aria-label="Zoom out of endorsement">Zoom out</button>
+      <iframe id="endorsement-modal-frame" src="../images/endorsement.pdf#view=FitH" title="Full endorsement document (PDF)"></iframe>
     </div>
   </div>
 </div><!-- end pg-gallery -->
@@ -1361,6 +1369,8 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     if (!modal) return;
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
+    setEndorsementZoomState(false);
+    setEndorsementZoomState(true);
   }
 
   function closeEndorsementModal() {
@@ -1368,6 +1378,24 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     if (!modal) return;
     modal.classList.remove('open');
     document.body.style.overflow = '';
+  }
+
+  function setEndorsementZoomState(isZoomedIn) {
+    const frame = document.getElementById('endorsement-modal-frame');
+    const toggle = document.getElementById('endorsement-toggle');
+    if (!frame || !toggle) return;
+    frame.src = isZoomedIn
+      ? '../images/endorsement.pdf#zoom=page-fit'
+      : '../images/endorsement.pdf#view=FitH';
+    toggle.textContent = isZoomedIn ? 'Zoom out' : 'Zoom in';
+    toggle.setAttribute('aria-label', isZoomedIn ? 'Zoom out of endorsement' : 'Zoom in to endorsement');
+    toggle.dataset.zoomedIn = isZoomedIn ? '1' : '0';
+  }
+
+  function toggleEndorsementZoom() {
+    const toggle = document.getElementById('endorsement-toggle');
+    const isZoomedIn = toggle && toggle.dataset.zoomedIn === '1';
+    setEndorsementZoomState(!isZoomedIn);
   }
 
   function handleEndorsementOverlayClick(event) {
