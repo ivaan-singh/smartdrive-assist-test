@@ -172,6 +172,12 @@ h1 .hl{color:var(--accent);}
 @keyframes meetingBlink{0%,100%{box-shadow:0 0 0 2px rgba(0,87,255,.18),0 8px 24px rgba(0,87,255,.1);}50%{box-shadow:0 0 0 6px rgba(0,87,255,.35),0 14px 34px rgba(0,87,255,.22);}}
 
 .endorsement-card{cursor:zoom-in;position:relative;}
+.endorsement-hitbox{position:absolute;top:.7rem;right:.7rem;border:1px solid rgba(0,87,255,.35);background:rgba(255,255,255,.96);color:var(--accent);cursor:pointer;border-radius:999px;z-index:4;font-size:.75rem;font-weight:700;padding:.35rem .65rem;line-height:1.1;}
+.endorsement-modal{position:fixed;inset:0;background:rgba(0,0,0,.96);display:none;align-items:center;justify-content:center;z-index:1200;padding:1.5rem;}
+.endorsement-modal.open{display:flex;}
+.endorsement-modal-content{position:relative;width:min(95vw,1080px);height:min(90vh,840px);background:#111;border-radius:14px;padding:3.2rem 1rem 1rem;}
+.endorsement-modal iframe{width:100%;height:100%;border:0;border-radius:10px;background:white;}
+.endorsement-ctrl{position:absolute;top:.7rem;right:.8rem;border:1px solid rgba(255,255,255,.3);background:rgba(0,0,0,.65);color:#fff;border-radius:999px;padding:.38rem .72rem;font-size:.8rem;font-weight:600;cursor:pointer;z-index:5;}
 .endorsement-hitbox{position:absolute;top:.7rem;right:.7rem;border:1px solid rgba(0,87,255,.35);background:rgba(255,255,255,.92);color:var(--accent);cursor:pointer;border-radius:999px;z-index:2;font-size:.75rem;font-weight:700;padding:.35rem .65rem;}
 .endorsement-hitbox{position:absolute;inset:0;border:0;background:transparent;cursor:zoom-in;border-radius:12px;z-index:2;}
 .endorsement-modal{position:fixed;inset:0;background:rgba(0,0,0,.78);display:none;align-items:center;justify-content:center;z-index:1200;padding:1.5rem;}
@@ -1072,6 +1078,9 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
           <iframe width="100%" height="220" src="https://www.youtube.com/embed/tIm-6OMf9_Y" title="Meeting with Mr. Vinod Kumar, wheelchair user" style="border:0;border-radius:12px;" allowfullscreen></iframe>
           <p style="margin-top:.7rem;font-size:.84rem;color:var(--text-muted);">Meeting with <strong style="color:var(--text-dark);">Mr. Vinod Kumar, wheelchair user</strong></p>
         </div>
+        <div class="testi-card endorsement-card" id="asset-endorsement">
+          <iframe width="100%" height="220" src="../images/endorsement.pdf#view=FitH" title="Endorsement document (PDF)" style="border:0;border-radius:12px;background:var(--off-white);" loading="lazy"></iframe>
+          <button class="endorsement-hitbox" aria-label="Zoom in to endorsement" onclick="event.stopPropagation();openEndorsementModal()">Zoom in</button>
         <div class="testi-card endorsement-card" id="asset-endorsement" onclick="openEndorsementModal()">
           <iframe width="100%" height="220" src="../images/endorsement.pdf#view=FitH" title="Endorsement document (PDF)" style="border:0;border-radius:12px;background:var(--off-white);" loading="lazy"></iframe>
           <button class="endorsement-hitbox" aria-label="Zoom in to endorsement" onclick="event.stopPropagation();openEndorsementModal()">Zoom in</button>
