@@ -1372,8 +1372,8 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     const toggle = document.getElementById('endorsement-toggle');
     if (!frame || !toggle) return;
     frame.src = isZoomedIn
-      ? '../images/endorsement.pdf#zoom=page-fit'
-      : '../images/endorsement.pdf#view=FitH';
+      ? '../images/endorsement.pdf#view=FitH'
+      : '../images/endorsement.pdf#zoom=page-fit';
     toggle.textContent = isZoomedIn ? 'Zoom out' : 'Zoom in';
     toggle.setAttribute('aria-label', isZoomedIn ? 'Zoom out of endorsement' : 'Zoom in to endorsement');
     toggle.dataset.zoomedIn = isZoomedIn ? '1' : '0';
