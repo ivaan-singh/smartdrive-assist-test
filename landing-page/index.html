@@ -259,6 +259,10 @@ h1 .hl{color:var(--accent);}
 .models-wrap{padding:60px 5% 80px;max-width:1120px;margin:0 auto;}
 .models-hero{text-align:center;max-width:670px;margin:0 auto 2.4rem;}
 .models-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;}
+.models-more-details{margin:2rem auto 0;max-width:720px;background:var(--white);border:1px solid var(--border);border-radius:18px;padding:1.4rem 1.6rem;display:flex;align-items:center;justify-content:space-between;gap:1.25rem;box-shadow:0 12px 34px rgba(15,23,42,.06);}
+.models-more-details h3{font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:800;letter-spacing:-.02em;margin-bottom:.3rem;color:var(--text-dark);}
+.models-more-details p{font-size:.86rem;color:var(--text-muted);line-height:1.55;}
+.models-more-details button{white-space:nowrap;}
 .model-card{background:var(--white);border:1px solid var(--border);border-radius:18px;padding:1.6rem;display:flex;flex-direction:column;gap:.8rem;transition:transform .2s,box-shadow .2s,border-color .2s;}
 .model-card:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:0 10px 30px rgba(0,87,255,.08);}
 .model-price{font-family:'Syne',sans-serif;font-size:1.7rem;font-weight:800;letter-spacing:-.02em;color:var(--accent);line-height:1.1;}
@@ -335,6 +339,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
   #hero,.about-hero,.contact-wrap{grid-template-columns:1fr;gap:2.5rem;}
   #hero{min-height:auto;}
   .hiw-steps,.feat-grid-hero,.specs-grid,.testi-grid,.models-grid{grid-template-columns:1fr;}
+  .models-more-details{align-items:flex-start;flex-direction:column;}
   .more-drawer.open{grid-template-columns:1fr 1fr;}
   #stats-bar{grid-template-columns:1fr 1fr;}
   .faq-layout{grid-template-columns:1fr;}
@@ -841,6 +846,14 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
         </ul>
       </div>
     </div>
+
+    <div class="models-more-details fade-up">
+      <div>
+        <h3>Need the full plan?</h3>
+        <p>Scroll-ready business model, implementation notes, and projected roadmap details are available in the complete document.</p>
+      </div>
+      <button class="btn-outline" type="button" onclick="openEndorsementModal('../images/business_plan.docx', 'SmartDrive Assist business plan document')">More details</button>
+    </div>
   </div>
 
   <!-- PAGE NAV: Models → How it works -->
@@ -1125,9 +1138,9 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
           <iframe width="100%" height="220" src="https://www.youtube.com/embed/L0xIOWwfByY" title="Meeting with Mrs. Riya, Caretaker TESF" style="border:0;border-radius:12px;" allowfullscreen></iframe>
           <p style="margin-top:.7rem;font-size:.84rem;color:var(--text-muted);">Meeting with <strong style="color:var(--text-dark);">Mrs. Riya, Caretaker TESF</strong></p>
         </div>
-        <div class="testi-card endorsement-card" id="bhf-endorsement" onclick="openEndorsementModal()">
+        <div class="testi-card endorsement-card" id="bhf-endorsement" onclick="openEndorsementModal('../images/bhf_endorsement.pdf', 'BraveHeart Soldier Foundation endorsement document')">
           <iframe width="100%" height="220" src="../images/bhf_endorsement.pdf#view=FitH" title="BraveHeart Soldier Foundation Endorsement Document (PDF)" style="border:0;border-radius:12px;background:var(--off-white);" loading="lazy"></iframe>
-          <button class="endorsement-hitbox" aria-label="Zoom in to endorsement" onclick="event.stopPropagation();openEndorsementModal()"></button>
+          <button class="endorsement-hitbox" aria-label="Zoom in to endorsement" onclick="event.stopPropagation();openEndorsementModal('../images/bhf_endorsement.pdf', 'BraveHeart Soldier Foundation endorsement document')"></button>
           <p style="margin-top:.7rem;font-size:.84rem;color:var(--text-muted);"><strong style="color:var(--text-dark);">Endorsement</strong> by Mr. Anuj Sharma, Director BraveHeart Foundation</p>
         </div>
         <div class="testi-card" id="meeting-sima">
@@ -1142,9 +1155,9 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
           <iframe width="100%" height="220" src="https://www.youtube.com/embed/9vYQ5XE1tpQ" title="Meeting with TESF resident, wheelchair user" style="border:0;border-radius:12px;" allowfullscreen></iframe>
           <p style="margin-top:.7rem;font-size:.84rem;color:var(--text-muted);">Meeting with <strong style="color:var(--text-dark);">TESF resident, wheelchair user</strong></p>
         </div>
-        <div class="testi-card endorsement-card" id="tesf-endorsement" onclick="openEndorsementModal()">
+        <div class="testi-card endorsement-card" id="tesf-endorsement" onclick="openEndorsementModal('../images/tesf_endorsement.pdf', 'The Earth Saviours Foundation endorsement document')">
           <iframe width="100%" height="220" src="../images/tesf_endorsement.pdf#view=FitH" title="The Earth Saviours Foundation Endorsement Document (PDF)" style="border:0;border-radius:12px;background:var(--off-white);" loading="lazy"></iframe>
-          <button class="endorsement-hitbox" aria-label="Zoom in to endorsement" onclick="event.stopPropagation();openEndorsementModal()"></button>
+          <button class="endorsement-hitbox" aria-label="Zoom in to endorsement" onclick="event.stopPropagation();openEndorsementModal('../images/tesf_endorsement.pdf', 'The Earth Saviours Foundation endorsement document')"></button>
           <p style="margin-top:.7rem;font-size:.84rem;color:var(--text-muted);"><strong style="color:var(--text-dark);">Endorsement</strong> by The Earth Saviours Foundation (TESF)</p>
         </div>
         <div class="testi-card" id="tesf-endorsement-video">
@@ -1465,9 +1478,14 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
   }
 
 
-  function openEndorsementModal() {
+  let endorsementModalSrc = '../images/endorsement.pdf';
+  let endorsementModalTitle = 'Full endorsement document';
+
+  function openEndorsementModal(src = '../images/endorsement.pdf', title = 'Full endorsement document') {
     const modal = document.getElementById('endorsement-modal');
     if (!modal) return;
+    endorsementModalSrc = src;
+    endorsementModalTitle = title;
     if (modal.parentElement !== document.body) document.body.appendChild(modal);
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -1485,11 +1503,13 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     const frame = document.getElementById('endorsement-modal-frame');
     const toggle = document.getElementById('endorsement-toggle');
     if (!frame || !toggle) return;
-    frame.src = isZoomedIn
-      ? '../images/endorsement.pdf#view=FitH'
-      : '../images/endorsement.pdf#zoom=page-fit';
+    const isPdf = endorsementModalSrc.toLowerCase().split('?')[0].endsWith('.pdf');
+    frame.src = isPdf
+      ? `${endorsementModalSrc}${isZoomedIn ? '#view=FitH' : '#zoom=page-fit'}`
+      : endorsementModalSrc;
+    frame.title = endorsementModalTitle;
     toggle.textContent = 'Zoom out';
-    toggle.setAttribute('aria-label', 'Close endorsement preview');
+    toggle.setAttribute('aria-label', 'Close document preview');
     toggle.dataset.zoomedIn = isZoomedIn ? '1' : '0';
   }
 
