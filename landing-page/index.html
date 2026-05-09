@@ -178,8 +178,8 @@ h1 .hl{color:var(--accent);}
 .home-video-close{margin-top:.55rem;background:transparent;border:0;color:var(--accent);font-family:'DM Sans',sans-serif;font-weight:700;font-size:.76rem;cursor:pointer;padding:0;}
 @media(max-width:700px){.home-video-flex{flex-direction:column;align-items:stretch;}.home-video-frame{width:100%;}}
 
-.meeting-focus{border-color:var(--accent)!important;animation:meetingBlink 1.2s ease-in-out 4;box-shadow:0 0 0 3px rgba(0,87,255,.22),0 12px 30px rgba(0,87,255,.16);}
-@keyframes meetingBlink{0%,100%{box-shadow:0 0 0 2px rgba(0,87,255,.18),0 8px 24px rgba(0,87,255,.1);}50%{box-shadow:0 0 0 6px rgba(0,87,255,.35),0 14px 34px rgba(0,87,255,.22);}}
+.-focus{border-color:var(--accent)!important;animation:Blink 1.2s ease-in-out 4;box-shadow:0 0 0 3px rgba(0,87,255,.22),0 12px 30px rgba(0,87,255,.16);}
+@keyframes Blink{0%,100%{box-shadow:0 0 0 2px rgba(0,87,255,.18),0 8px 24px rgba(0,87,255,.1);}50%{box-shadow:0 0 0 6px rgba(0,87,255,.35),0 14px 34px rgba(0,87,255,.22);}}
 
 .endorsement-card{cursor:zoom-in;position:relative;}
 .endorsement-hitbox{position:absolute;inset:0;border:0;background:transparent;cursor:zoom-in;border-radius:12px;z-index:2;}
@@ -524,7 +524,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
             <div class="testi-role">Wheelchair user interviews</div>
           </div>
         </div>
-        <div class="testi-actions"><button class="testi-link-btn" onclick="toggleHomeVideo(this,'tIm-6OMf9_Y','Wheelchair user conversation')">Watch</button></div>
+        <div class="testi-actions"><button class="testi-link-btn" onclick="toggleHomeVideo(this,'tIm-6OMf9_Y','Wheelchair user conversation')">Watch the Meeting</button></div>
       </div>
     </div>
   </div>
@@ -546,7 +546,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
             <div class="testi-role">Director, BraveHeart Soldier Foundation</div>
           </div>
         </div>
-        <div class="testi-actions"><button class="testi-link-btn" onclick="toggleHomeVideo(this,'B7kv7ZeWvPI','Meeting with Anuj Sharma')">Watch</button></div>
+        <div class="testi-actions"><button class="testi-link-btn" onclick="toggleHomeVideo(this,'B7kv7ZeWvPI','Meeting with Anuj Sharma')">Watch the Meeting</button></div>
       </div>
       <div class="testi-card">
         <p class="testi-quote">You have a very strong point of view and a great concept. You have identified a real problem that affects millions in India.</p>
@@ -557,7 +557,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
             <div class="testi-role">CEO, AssisTech Foundation</div>
           </div>
         </div>
-        <div class="testi-actions"><button class="testi-link-btn" onclick="openEndorsementModal()">View</button></div>
+        <div class="testi-actions"><button class="testi-link-btn" onclick="openEndorsementModal()">View the Endorsement</button></div>
       </div>
     </div>
   </div>
