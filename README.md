@@ -102,13 +102,19 @@ Planned improvements include:
 ```text
 smartdrive-assist/
 │
-├── assets/
-├── components/
-├── styles/
-├── scripts/
+├── LICENSE/
+├── index.html/
+├── README.md/
+├── landing-page/
+                 ├── index.html/
 ├── images/
-├── index.html
-└── README.md
+           └── clip.png/
+           └── sensors.png/
+           └── control.png/
+           └── logo.png/
+           └── favicon.svg/
+           └── bhf_endorsement.pdf/
+           └── tesf_endrosement.pdf/
 ```
 
 ---
