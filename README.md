@@ -184,5 +184,5 @@ Created by Ivaan Singh.
 
 ## License
 
-This project is currently shared for educational and portfolio purposes.
+Apache 2.0 License 2026 under Ivaan Singh
 
