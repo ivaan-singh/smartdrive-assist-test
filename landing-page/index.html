@@ -1105,7 +1105,11 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
         <p class="section-sub">Key videos and assets from competitions, mentorship meetings, and user conversations.</p>
       </div>
       <div class="fade-up" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem;">
-        <div class="testi-card" id="meeting-anuj-sharma">
+        <div class="testi-card" id="winning-regionals">
+          <src width="100%" height="220" src="../images/regionals.jpg" title="Codeavour 7.0 — 1st in regionals" style="border:0;border-radius:12px;" allowfullscreen></iframe>
+          <p style="margin-top:.7rem;font-size:.84rem;color:var(--text-muted);"><strong style="color:var(--text-dark);">Codeavour 7.0 — 1st in regionals</strong></p>
+        </div>
+        <div class="testi-card" id="winning-nationals">
           <iframe width="100%" height="220" src="https://www.youtube.com/embed/B7kv7ZeWvPI" title="Codeavour 7.0 — 2nd in India nationals" style="border:0;border-radius:12px;" allowfullscreen></iframe>
           <p style="margin-top:.7rem;font-size:.84rem;color:var(--text-muted);"><strong style="color:var(--text-dark);">Codeavour 7.0 — 2nd in India nationals</strong></p>
         </div>
@@ -1572,7 +1576,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     if (email) body += 'Email: ' + email + '\n';
     body += '\n' + (msg || '(no message entered)');
 
-    const recipients = 'siraajpabby@gmail.com,ivaansingh.k@gmail.com';
+    const recipients = 'siraajpabby@gmail.com,ivaansingh.k@gmail.com,utsa.banerjee@pathways.in';
     window.location.href = 'mailto:' + recipients + '?subject=' + subject + '&body=' + encodeURIComponent(body);
 
     // hide form, show sent state
