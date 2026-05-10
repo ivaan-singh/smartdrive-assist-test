@@ -157,6 +157,15 @@ h1 .hl{color:var(--accent);}
 
 /* home testimonials preview */
 .testi-preview{background:var(--off-white);padding:80px 5%;}
+.testi-preview.investment-commitment{background:#0f1117;color:white;}
+.testi-preview.investment-commitment .section-tag{color:var(--accent-mid);}
+.testi-preview.investment-commitment .section-title{color:white;}
+.testi-preview.investment-commitment .section-sub{color:rgba(255,255,255,.65);}
+.testi-preview.investment-commitment .testi-card{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.1);}
+.testi-preview.investment-commitment .testi-quote{color:rgba(255,255,255,.75);min-height:4.5rem;}
+.testi-preview.investment-commitment .testi-author .testi-name{color:white;}
+.testi-preview.investment-commitment .testi-author .testi-role{color:rgba(255,255,255,.55);}
+.testi-preview.investment-commitment .testi-actions .testi-link-btn{background:var(--accent);color:white;border:none;}
 .testi-preview-header{text-align:center;max-width:500px;margin:0 auto 3rem;}
 .testi-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.75rem;max-width:960px;margin:0 auto;}
 .testi-card{background:var(--white);border:1px solid var(--border);border-radius:18px;padding:2rem;}
@@ -398,7 +407,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
         <span class="trust-dot"></span>
         <span>AssisTech Foundation</span>
         <span class="trust-dot"></span>
-        <span>Student innovation project</span>
+        <a class="hero-link" href="#investment-commitment" style="font-size:.78rem;">SmartDrive Assist is now officially funded by Nitin Jain (Angel Investor)</a>
       </div>
     </div>
     <div class="hero-visual fade-up">
@@ -602,6 +611,27 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
           </div>
         </div>
         <div class="testi-actions"><button class="testi-link-btn" onclick="toggleHomeVideo(this,'L0xIOWwfByY','Meeting with Riya')">Watch the Meeting</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="testi-preview investment-commitment" id="investment-commitment">
+    <div class="testi-preview-header fade-up">
+      <div class="section-tag">Investment commitment</div>
+      <h2 class="section-title">Official investor backing secured.</h2>
+      <p class="section-sub" style="margin:0 auto;max-width:560px;">A strategic commitment that validates SmartDrive Assist's vision and investor confidence.</p>
+    </div>
+    <div class="testi-grid fade-up" style="max-width:520px;grid-template-columns:1fr;">
+      <div class="testi-card endorsement-card">
+        <p class="testi-quote"></p>
+        <div class="testi-author">
+          <div class="testi-avatar" style="background:var(--accent);">NJ</div>
+          <div>
+            <div class="testi-name">Nitin Jain</div>
+            <div class="testi-role">Angel Investor</div>
+          </div>
+        </div>
+        <div class="testi-actions"><button class="testi-link-btn" onclick="openEndorsementModal('../images/nj_investment', 'Nitin Jain investment letter')">View Investment Letter</button></div>
       </div>
     </div>
   </div>
@@ -1495,8 +1525,9 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
       ? `${endorsementModalSrc}${isZoomedIn ? '#view=FitH' : '#zoom=page-fit'}`
       : endorsementModalSrc;
     frame.title = endorsementModalTitle;
-    toggle.textContent = 'Close endorsement';
-    toggle.setAttribute('aria-label', 'Close document preview');
+    const isInvestmentDocument = endorsementModalTitle.toLowerCase().includes('investment');
+    toggle.textContent = isInvestmentDocument ? 'Close Investment Letter' : 'Close endorsement';
+    toggle.setAttribute('aria-label', isInvestmentDocument ? 'Close investment letter preview' : 'Close document preview');
     toggle.dataset.zoomedIn = isZoomedIn ? '1' : '0';
   }
 
