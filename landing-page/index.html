@@ -166,6 +166,7 @@ h1 .hl{color:var(--accent);}
 .testi-preview.investment-commitment .testi-author .testi-name{color:white;}
 .testi-preview.investment-commitment .testi-author .testi-role{color:rgba(255,255,255,.55);}
 .testi-preview.investment-commitment .testi-actions .testi-link-btn{background:var(--accent);color:white;border:none;}
+.testi-preview.investment-commitment .testi-grid{max-width:960px;}
 .testi-preview-header{text-align:center;max-width:500px;margin:0 auto 3rem;}
 .testi-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.75rem;max-width:960px;margin:0 auto;}
 .testi-card{background:var(--white);border:1px solid var(--border);border-radius:18px;padding:2rem;}
@@ -195,6 +196,10 @@ h1 .hl{color:var(--accent);}
 .endorsement-modal iframe{width:100%;height:100%;border:0;border-radius:10px;background:white;}
 .endorsement-ctrl{position:absolute;top:.7rem;right:.8rem;border:1px solid rgba(255,255,255,.3);background:rgba(0,0,0,.5);color:#fff;border-radius:999px;padding:.38rem .72rem;font-size:.8rem;font-weight:600;cursor:pointer;z-index:5;}
 .endorsement-ctrl:hover{background:rgba(0,87,255,.7);border-color:rgba(0,87,255,.9);}
+.gallery-youtube-placeholder{height:220px;border:1.5px dashed #b8c7ee;border-radius:12px;background:linear-gradient(135deg,#f7f9ff,#eef4ff);display:flex;align-items:center;justify-content:center;text-align:center;padding:1.25rem;color:var(--text-muted);font-size:.82rem;line-height:1.55;}
+.gallery-youtube-placeholder strong{display:block;color:var(--text-dark);font-family:'Syne',sans-serif;font-size:.92rem;margin-bottom:.3rem;}
+.gallery-youtube-placeholder .youtube-icon{width:52px;height:36px;border-radius:10px;background:#ff0033;display:inline-flex;align-items:center;justify-content:center;margin-bottom:.85rem;box-shadow:0 10px 22px rgba(255,0,51,.18);}
+.gallery-youtube-placeholder .youtube-icon::before{content:'';width:0;height:0;border-top:8px solid transparent;border-bottom:8px solid transparent;border-left:13px solid white;margin-left:3px;}
 
 
 /* ── PAGE: FEATURES ── */
@@ -353,6 +358,9 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
 }
 @media(max-width:600px){
   .more-drawer.open,.about-cards{grid-template-columns:1fr;}
+  .page-nav-banner{align-items:flex-start;flex-direction:column;gap:1.5rem;}
+  .pnb-right{width:100%;justify-content:space-between;flex-direction:row-reverse;}
+  .pnb-dots{flex-direction:row;}
   footer{grid-template-columns:1fr;}
 }
 </style>
@@ -617,7 +625,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
       <h2 class="section-title">Seed Funding</h2>
       <p class="section-sub" style="margin:0 auto;max-width:560px;">A strategic commitment that validates SmartDrive Assist's vision and investor confidence.</p>
     </div>
-    <div class="testi-grid fade-up" style="max-width:520px;grid-template-columns:1fr;">
+    <div class="testi-grid fade-up">
       <div class="testi-card endorsement-card">
         <p class="testi-quote">You have identified a problem that matters, built something that works, and earned the trust of people who do this for a living.</p>
         <div class="testi-author">
@@ -629,7 +637,6 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
         </div>
         <div class="testi-actions"><button class="testi-link-btn" onclick="openEndorsementModal('../assets/nj_investment.pdf', 'Nitin Jain investment letter')">View Investment Letter</button></div>
       </div>
-      <div class="testi-grid fade-up" style="max-width:520px;grid-template-columns:1fr;">
       <div class="testi-card endorsement-card">
         <p class="testi-quote">I have spent most of my career around founders, and it is genuinely rare to see a team of any age look at a real-world problem, refuse to be intimidated by it, and then build a working answer.</p>
         <div class="testi-author">
@@ -639,7 +646,8 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
             <div class="testi-role">Angel Investor & Unicorn Co-founder</div>
           </div>
         </div>
-        <div class="testi-actions"><button class="testi-link-btn" onclick="toggleHomeVideo(this,'u0Bka3FPrNs','Investment Video with Nitin Jain')">Watch the Pitch</button></div></div>
+        <div class="testi-actions"><button class="testi-link-btn" onclick="toggleHomeVideo(this,'u0Bka3FPrNs','Investment Video with Nitin Jain')">Watch the Pitch</button></div>
+      </div>
     </div>
   </div>
 
@@ -1204,6 +1212,46 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
         <div class="testi-card" id="investment-video">
           <iframe width="100%" height="220" src="https://www.youtube.com/embed/u0Bka3FPrNs" title="Investment Video with Nitin Jain" style="border:0;border-radius:12px;" allowfullscreen></iframe>
           <p style="margin-top:.7rem;font-size:.84rem;color:var(--text-muted);">Investment Pitch to<strong style="color:var(--text-dark);"> Nitin Jain</strong></p>
+        </div>
+        <div class="testi-card" id="youtube-placeholder-prototype-demo">
+          <div class="gallery-youtube-placeholder" role="img" aria-label="YouTube placeholder for prototype demo video">
+            <div>
+              <span class="youtube-icon" aria-hidden="true"></span>
+              <strong>YouTube placeholder</strong>
+              Prototype demo video coming soon
+            </div>
+          </div>
+          <p style="margin-top:.7rem;font-size:.84rem;color:var(--text-muted);"><strong style="color:var(--text-dark);">Prototype Demo</strong> &mdash; YouTube video placeholder</p>
+        </div>
+        <div class="testi-card" id="youtube-placeholder-sensor-testing">
+          <div class="gallery-youtube-placeholder" role="img" aria-label="YouTube placeholder for sensor testing video">
+            <div>
+              <span class="youtube-icon" aria-hidden="true"></span>
+              <strong>YouTube placeholder</strong>
+              Sensor testing video coming soon
+            </div>
+          </div>
+          <p style="margin-top:.7rem;font-size:.84rem;color:var(--text-muted);"><strong style="color:var(--text-dark);">Sensor Testing</strong> &mdash; YouTube video placeholder</p>
+        </div>
+        <div class="testi-card" id="youtube-placeholder-user-trial">
+          <div class="gallery-youtube-placeholder" role="img" aria-label="YouTube placeholder for user trial video">
+            <div>
+              <span class="youtube-icon" aria-hidden="true"></span>
+              <strong>YouTube placeholder</strong>
+              User trial video coming soon
+            </div>
+          </div>
+          <p style="margin-top:.7rem;font-size:.84rem;color:var(--text-muted);"><strong style="color:var(--text-dark);">User Trial</strong> &mdash; YouTube video placeholder</p>
+        </div>
+        <div class="testi-card" id="youtube-placeholder-build-update">
+          <div class="gallery-youtube-placeholder" role="img" aria-label="YouTube placeholder for build update video">
+            <div>
+              <span class="youtube-icon" aria-hidden="true"></span>
+              <strong>YouTube placeholder</strong>
+              Build update video coming soon
+            </div>
+          </div>
+          <p style="margin-top:.7rem;font-size:.84rem;color:var(--text-muted);"><strong style="color:var(--text-dark);">Build Update</strong> &mdash; YouTube video placeholder</p>
         </div>
       </div>
     </div>
