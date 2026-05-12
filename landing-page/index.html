@@ -166,6 +166,7 @@ h1 .hl{color:var(--accent);}
 .testi-preview.investment-commitment .testi-author .testi-name{color:white;}
 .testi-preview.investment-commitment .testi-author .testi-role{color:rgba(255,255,255,.55);}
 .testi-preview.investment-commitment .testi-actions .testi-link-btn{background:var(--accent);color:white;border:none;}
+.testi-preview.investment-commitment .testi-grid{max-width:960px;}
 .testi-preview-header{text-align:center;max-width:500px;margin:0 auto 3rem;}
 .testi-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.75rem;max-width:960px;margin:0 auto;}
 .testi-card{background:var(--white);border:1px solid var(--border);border-radius:18px;padding:2rem;}
@@ -353,6 +354,9 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
 }
 @media(max-width:600px){
   .more-drawer.open,.about-cards{grid-template-columns:1fr;}
+  .page-nav-banner{align-items:flex-start;flex-direction:column;gap:1.5rem;}
+  .pnb-right{width:100%;justify-content:space-between;flex-direction:row-reverse;}
+  .pnb-dots{flex-direction:row;}
   footer{grid-template-columns:1fr;}
 }
 </style>
@@ -617,7 +621,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
       <h2 class="section-title">Seed Funding</h2>
       <p class="section-sub" style="margin:0 auto;max-width:560px;">A strategic commitment that validates SmartDrive Assist's vision and investor confidence.</p>
     </div>
-    <div class="testi-grid fade-up" style="max-width:520px;grid-template-columns:1fr;">
+    <div class="testi-grid fade-up">
       <div class="testi-card endorsement-card">
         <p class="testi-quote">You have identified a problem that matters, built something that works, and earned the trust of people who do this for a living.</p>
         <div class="testi-author">
@@ -629,7 +633,6 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
         </div>
         <div class="testi-actions"><button class="testi-link-btn" onclick="openEndorsementModal('../assets/nj_investment.pdf', 'Nitin Jain investment letter')">View Investment Letter</button></div>
       </div>
-      <div class="testi-grid fade-up" style="max-width:520px;grid-template-columns:1fr;">
       <div class="testi-card endorsement-card">
         <p class="testi-quote">I have spent most of my career around founders, and it is genuinely rare to see a team of any age look at a real-world problem, refuse to be intimidated by it, and then build a working answer.</p>
         <div class="testi-author">
@@ -639,7 +642,8 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
             <div class="testi-role">Angel Investor & Unicorn Co-founder</div>
           </div>
         </div>
-        <div class="testi-actions"><button class="testi-link-btn" onclick="toggleHomeVideo(this,'u0Bka3FPrNs','Investment Video with Nitin Jain')">Watch the Pitch</button></div></div>
+        <div class="testi-actions"><button class="testi-link-btn" onclick="toggleHomeVideo(this,'u0Bka3FPrNs','Investment Video with Nitin Jain')">Watch the Pitch</button></div>
+      </div>
     </div>
   </div>
 
