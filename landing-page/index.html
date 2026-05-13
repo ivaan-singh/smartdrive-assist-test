@@ -1327,6 +1327,123 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
       <iframe id="endorsement-modal-frame" src="../assets/bhf_endorsement.pdf#zoom=page-fit" title="Full endorsement document (PDF)"></iframe>
     </div>
   </div>
+  <template id="phase-plan-preview-template">
+    <style>
+  :root { color-scheme: light; --accent:#0057ff; --ink:#142033; --muted:#657086; --line:#dfe7f5; --soft:#f6f8fc; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:Inter, Arial, sans-serif; background:#f2f6ff; color:var(--ink); }
+  header { position:sticky; top:0; z-index:2; padding:18px 22px; background:rgba(255,255,255,.96); border-bottom:1px solid var(--line); box-shadow:0 8px 24px rgba(20,32,51,.07); }
+  h1 { margin:0 0 6px; font-size:clamp(1.35rem, 2.4vw, 2.1rem); }
+  header p { margin:0; color:var(--muted); font-size:.93rem; }
+  nav { display:flex; gap:10px; flex-wrap:wrap; margin-top:14px; }
+  nav a { color:var(--accent); text-decoration:none; border:1px solid rgba(0,87,255,.24); background:#eef4ff; border-radius:999px; padding:7px 12px; font-size:.86rem; font-weight:700; }
+  main { padding:22px; }
+  .sheet-card { background:white; border:1px solid var(--line); border-radius:18px; box-shadow:0 18px 44px rgba(20,32,51,.08); margin:0 0 24px; overflow:hidden; }
+  h2 { margin:0; padding:18px 20px; font-size:1.15rem; background:linear-gradient(135deg,#ffffff,#edf4ff); border-bottom:1px solid var(--line); }
+  .table-wrap { overflow:auto; }
+  table { width:100%; min-width:760px; border-collapse:collapse; }
+  th, td { border:1px solid var(--line); padding:10px 12px; text-align:left; vertical-align:top; font-size:.9rem; line-height:1.35; }
+  th { position:sticky; top:0; background:#14325f; color:white; font-weight:800; z-index:1; }
+  td:first-child, th:first-child { text-align:center; width:90px; }
+  tbody tr:nth-child(even) td { background:var(--soft); }
+  .total-row td { background:#eaf2ff !important; font-weight:800; }
+  a { color:var(--accent); font-weight:700; }
+  @media (max-width:700px) { header, main { padding:14px; } th, td { padding:9px; font-size:.82rem; } }
+</style>
+
+<header>
+  <h1>SmartDrive Assist Phase Plan</h1>
+  <p>Spreadsheet preview generated from <strong>phase_plan.xlsx</strong>.</p>
+  <nav><a href="#phase-1">Phase 1</a><a href="#phase-2">Phase 2</a><a href="#phase-3">Phase 3</a></nav>
+
+</header>
+<main>
+  <section class="sheet-card" id="phase-1">
+      <h2>Phase 1</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Serial No.</th><th>Components</th><th>Quantity</th><th>Price of 1 Unit( ₹)</th><th>Total Price (of all quantity)</th><th>Link</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
+            <tr><td>2</td><td>Batteries</td><td>As per need</td><td>3000</td><td>-</td><td><a href="https://pranax.in/product/24v-10ah-lithium-ion-battery-for-solar-non-solar-inverter-multipurposes">24v Battery</a></td></tr>
+            <tr><td>3</td><td>DC Motor (24V)</td><td>x1</td><td>1560</td><td>1560</td><td>DC Motor 24v</td></tr>
+            <tr><td>4</td><td>Servo Motor</td><td>x1</td><td>190</td><td>190</td><td><a href="https://www.flipkart.com/sp-electron-4-8v-6v-mg90-metal-gear-digital-servo-motor-rc-helicopter-airplane-boat-electronic-components-hobby-kit/p/itmb614016295b96?pid=EHKH9FVKJ4Q8NZQR&amp;lid=LSTEHKH9FVKJ4Q8NZQRGJ5IDK&amp;marketplace=FLIPKART">Servo</a></td></tr>
+            <tr><td>5</td><td>Gear</td><td>As per need</td><td>214</td><td>-</td><td><a href="https://kitsguru.com/products/spur-gear-1-moldule-24-teeth?variant=46164096155900&amp;country=IN&amp;currency=INR&amp;">Metal Gear Heavy Duty</a></td></tr>
+            <tr><td>6</td><td>Axle</td><td>x2</td><td>139</td><td>478</td><td><a href="https://www.amazon.in/TESTIN-ELECTRONICS-Dummy-Motor-Robot/dp/B0G4LZPG47">6mm x 30mm Axle</a></td></tr>
+            <tr><td>7</td><td>Short Axle</td><td>x2</td><td>290</td><td>580</td><td><a href="https://www.amazon.in/GK-MART-diameter-cylindrical-chamfered/dp/B0FGWKJ3N6">6mm x 20mm Axle</a></td></tr>
+            <tr><td>8</td><td>Clamp</td><td>As per need</td><td>-</td><td>-</td><td>-</td></tr>
+            <tr><td>9</td><td>Arduino</td><td>x1</td><td>227</td><td>227</td><td><a href="https://robomart.com/product/uno-r3-ch340g-atmega328p-development-board-compatible-with-arduino/?srsltid=AfmBOorqdQib48NY0S_1lYxVA3wvin68ptYxpG_l-b0sxxmkNq2o6eAelAQ">Arduino Uno R3</a></td></tr>
+            <tr><td>10</td><td>Joystick</td><td>x1</td><td>35</td><td>35</td><td><a href="https://robu.in/product/ps2-joystick-module">Joystick</a></td></tr>
+            <tr><td>11</td><td>Button</td><td>As per need</td><td>9</td><td>-</td><td><a href="https://robomart.com/product/red-pbs-11b-12mm-2pin-momentary-self-reset-round-plastic-push-button-switch-pack-of-5/">Button</a></td></tr>
+            <tr><td>12</td><td>Buck  Converter</td><td>x2</td><td>303</td><td>303</td><td><a href="https://www.xcluma.com/xy-3606-dc-dc-5a-24v-12v-to-5v-dc-step-down-buck-power-supply-module-board-lm2596s-wide-voltage-9-36v-converter">5A Buck Converter</a></td></tr>
+            <tr><td>13</td><td>Motor Driver(Dual Chanel)</td><td>x1</td><td>271</td><td>271</td><td><a href="https://www.amazon.in/BTS7960-Power-H-Bridge-Driver-Module/dp/B0CW6D8PDC">Motor Driver</a></td></tr>
+            <tr><td>14</td><td>DHT Sensor (Tempature &amp; Humidity Sensor)</td><td>x1</td><td>108</td><td>108</td><td><a href="https://robu.in/product/dht11-digital-relative-humidity-temperature-sensor-module/">DHT Sensor</a></td></tr>
+            <tr><td>15</td><td>LED</td><td>x1</td><td>37</td><td>37</td><td><a href="https://www.electronifyindia.com/products/high-intensity-5mm-led-red-clear-lens?variant=46642101092671&amp;country=IN&amp;currency=INR">LED</a></td></tr>
+            <tr class="total-row"><td>&nbsp;</td><td>Total Cost</td><td>-</td><td>6387</td><td>3794</td><td>&nbsp;</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  <section class="sheet-card" id="phase-2">
+      <h2>Phase 2</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Serial No.</th><th>Components</th><th>Quantity</th><th>Price of 1 Unit( ₹)</th><th>Total Price (of all quantity)</th><th>Link</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Wires</td><td>x1</td><td>1856</td><td>1856</td><td><a href="https://www.flipkart.com/kripa-fab-gold-1-5-sqmm-copper-multi-strand-90m-house-fitting-fr-pvc-wire-cables-sq-mm-red-300-ft-wire/p/itm64c40847120a0?pid=ELWH7MEZVGGGGXEN&amp;lid=LSTELWH7MEZVGGGGXENB5AJGY&amp;hl_lid=&amp;marketplace=FLIPKART&amp;fm=eyJ3dHAiOiJyZWNvIiwicHJwdCI6InBwIiwibWlkIjoicHJvZHVjdFJlY29tbWVuZGF0aW9uL3NpbWlsYXIifQ%3D%3D">1.5 Sq mm, 90 meter roll</a></td></tr>
+            <tr><td>2</td><td>Batteries</td><td>As per need</td><td>3500</td><td>-</td><td><a href="https://pranax.in/product/24v-10ah-lithium-ion-battery-for-solar-non-solar-inverter-multipurposes">24v Battery</a></td></tr>
+            <tr><td>3</td><td>DC Motor (24V)</td><td>x1</td><td>1560</td><td>1560</td><td>DC Motor 24v</td></tr>
+            <tr><td>4</td><td>Servo Motor</td><td>x1</td><td>182</td><td>182</td><td><a href="https://www.flipkart.com/sp-electron-4-8v-6v-mg90-metal-gear-digital-servo-motor-rc-helicopter-airplane-boat-electronic-components-hobby-kit/p/itmb614016295b96?pid=EHKH9FVKJ4Q8NZQR&amp;lid=LSTEHKH9FVKJ4Q8NZQRGJ5IDK&amp;marketplace=FLIPKART">Servo</a></td></tr>
+            <tr><td>5</td><td>Gear</td><td>As per need</td><td>280</td><td>-</td><td><a href="https://kitsguru.com/products/spur-gear-1-moldule-24-teeth?variant=46164096155900&amp;country=IN&amp;currency=INR&amp;">Metal Gear Heavy Duty</a></td></tr>
+            <tr><td>6</td><td>Axle</td><td>x2</td><td>139</td><td>478</td><td><a href="https://www.amazon.in/TESTIN-ELECTRONICS-Dummy-Motor-Robot/dp/B0G4LZPG47">6mm x 30mm Axle</a></td></tr>
+            <tr><td>7</td><td>Short Axle</td><td>x2</td><td>290</td><td>580</td><td><a href="https://www.amazon.in/GK-MART-diameter-cylindrical-chamfered/dp/B0FGWKJ3N6">6mm x 20mm Axle</a></td></tr>
+            <tr><td>8</td><td>Clamp</td><td>As per need</td><td>-</td><td>-</td><td>-</td></tr>
+            <tr><td>9</td><td>Arduino R3</td><td>x1</td><td>476</td><td>476</td><td><a href="https://robomart.com/product/uno-r3-ch340g-atmega328p-development-board-compatible-with-arduino/?srsltid=AfmBOorqdQib48NY0S_1lYxVA3wvin68ptYxpG_l-b0sxxmkNq2o6eAelAQ">Arduino Uno R3</a></td></tr>
+            <tr><td>10</td><td>Joystick</td><td>x1</td><td>35</td><td>35</td><td><a href="https://robu.in/product/ps2-joystick-module">Joystick</a></td></tr>
+            <tr><td>11</td><td>Buttons</td><td>As per need</td><td>13</td><td>-</td><td><a href="https://robomart.com/product/red-pbs-11b-12mm-2pin-momentary-self-reset-round-plastic-push-button-switch-pack-of-5/">Button</a></td></tr>
+            <tr><td>12</td><td>Buck  Converter</td><td>x2</td><td>250</td><td>500</td><td><a href="https://www.xcluma.com/xy-3606-dc-dc-5a-24v-12v-to-5v-dc-step-down-buck-power-supply-module-board-lm2596s-wide-voltage-9-36v-converter">5A Buck Converter</a></td></tr>
+            <tr><td>13</td><td>Motor Driver(Dual Chanel)</td><td>x1</td><td>271</td><td>271</td><td><a href="https://www.amazon.in/BTS7960-Power-H-Bridge-Driver-Module/dp/B0CW6D8PDC">Motor Driver</a></td></tr>
+            <tr><td>14</td><td>VL53L0X ToF Laser Distance Sensor (Micro LiDAR Sensor)</td><td>x1</td><td>1200</td><td>1200</td><td><a href="https://www.mouser.in/ProductDetail/DFRobot/SEN0245?qs=vdi0iO8H4N2%252ByTl%252BC%252Bk6RA%3D%3D&amp;mgh=1&amp;">Micro LiDAR</a></td></tr>
+            <tr><td>15</td><td>DHT Sensor (Tempature &amp; Humidity Sensor)</td><td>x1</td><td>108</td><td>108</td><td><a href="https://robu.in/product/dht11-digital-relative-humidity-temperature-sensor-module/">DHT Sensor</a></td></tr>
+            <tr><td>16</td><td>HM-10 Bluetooth 4.0 BLE Module (CC2541)</td><td>x1</td><td>199</td><td>199</td><td><a href="https://www.amazon.in/HM-10-Bluetooth-Wireless-Arduino-Converter/dp/B07R7G6PCN">Blutooth Module</a></td></tr>
+            <tr><td>17</td><td>LED</td><td>x1</td><td>37</td><td>37</td><td><a href="https://www.electronifyindia.com/products/high-intensity-5mm-led-red-clear-lens?variant=46642101092671&amp;country=IN&amp;currency=INR">LED</a></td></tr>
+            <tr class="total-row"><td>&nbsp;</td><td>Total Cost</td><td>-</td><td>10206</td><td>7482</td><td>&nbsp;</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  <section class="sheet-card" id="phase-3">
+      <h2>Phase 3</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Serial No.</th><th>Components</th><th>Quantity</th><th>Price of 1 Unit( ₹)</th><th>Total Price (of all quantity)</th><th>Link</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>Wires</td><td>x1</td><td>1856</td><td>1856</td><td><a href="https://www.flipkart.com/kripa-fab-gold-1-5-sqmm-copper-multi-strand-90m-house-fitting-fr-pvc-wire-cables-sq-mm-red-300-ft-wire/p/itm64c40847120a0?pid=ELWH7MEZVGGGGXEN&amp;lid=LSTELWH7MEZVGGGGXENB5AJGY&amp;hl_lid=&amp;marketplace=FLIPKART&amp;fm=eyJ3dHAiOiJyZWNvIiwicHJwdCI6InBwIiwibWlkIjoicHJvZHVjdFJlY29tbWVuZGF0aW9uL3NpbWlsYXIifQ%3D%3D">1.5 Sq mm, 90 meter roll</a></td></tr>
+            <tr><td>2</td><td>Batteries</td><td>As per need</td><td>3500</td><td>-</td><td><a href="https://pranax.in/product/24v-10ah-lithium-ion-battery-for-solar-non-solar-inverter-multipurposes">24v Battery</a></td></tr>
+            <tr><td>3</td><td>DC Motor (24V)</td><td>x1</td><td>1560</td><td>1560</td><td>DC Motor 24v</td></tr>
+            <tr><td>4</td><td>Servo Motor</td><td>x3</td><td>182</td><td>546</td><td><a href="https://www.flipkart.com/sp-electron-4-8v-6v-mg90-metal-gear-digital-servo-motor-rc-helicopter-airplane-boat-electronic-components-hobby-kit/p/itmb614016295b96?pid=EHKH9FVKJ4Q8NZQR&amp;lid=LSTEHKH9FVKJ4Q8NZQRGJ5IDK&amp;marketplace=FLIPKART">Servo</a></td></tr>
+            <tr><td>5</td><td>Gear</td><td>As per need</td><td>280</td><td>-</td><td><a href="https://kitsguru.com/products/spur-gear-1-moldule-24-teeth?variant=46164096155900&amp;country=IN&amp;currency=INR&amp;">Metal Gear Heavy Duty</a></td></tr>
+            <tr><td>6</td><td>Long Axle</td><td>x2</td><td>139</td><td>478</td><td><a href="https://www.amazon.in/TESTIN-ELECTRONICS-Dummy-Motor-Robot/dp/B0G4LZPG47">6mm x 30mm Axle</a></td></tr>
+            <tr><td>7</td><td>Short Axle</td><td>x2</td><td>290</td><td>580</td><td><a href="https://www.amazon.in/GK-MART-diameter-cylindrical-chamfered/dp/B0FGWKJ3N6">6mm x 20mm Axle</a></td></tr>
+            <tr><td>8</td><td>Clamp</td><td>As per need</td><td>-</td><td>-</td><td>-</td></tr>
+            <tr><td>9</td><td>Arduino Giga R1 Wifi</td><td>x1</td><td>6402</td><td>6402</td><td><a href="../../../../../../../../../../../Downloads/-%20https:/robocraze.com/products/official-arduino-giga-r1-wifi-development-board?variant=47316052345056&amp;country=IN&amp;currency=INR&amp;">Arduino Giga R1 Wifi</a></td></tr>
+            <tr><td>10</td><td>Joystick</td><td>x1</td><td>500</td><td>500</td><td><a href="https://www.flipkart.com/mifra-electronics-dual-axis-xy-joystick-module-ps2-breakout-sensor-electronic-components-hobby-kit/p/itm36eff23283421">Joystick</a></td></tr>
+            <tr><td>11</td><td>Buttons</td><td>x1</td><td>2165</td><td>2165</td><td><a href="https://www.desertcart.in/products/38337692-eg-starts-5-piece-24mm-full-color-led-illuminated-push-button-built-in-switch-5v-buttons-for-arcade-joystick-games-mame-jamma-raspberry-pi-2">Button Pack of 5</a></td></tr>
+            <tr><td>12</td><td>Buck  Converter</td><td>x2</td><td>159</td><td>159</td><td><a href="https://www.amazon.in/LM2596-Converter-Regulator-Adjustable-Voltage/dp/B0BZHX2YT4">5A Buck Converter</a></td></tr>
+            <tr><td>13</td><td>Motor Driver(Dual Chanel)</td><td>x1</td><td>142</td><td>142</td><td><a href="https://robocraze.com/products/tb6612fng-dual-dc-motor-driver?variant=40193686306969&amp;country=IN&amp;currency=INR">Motor Driver</a></td></tr>
+            <tr><td>14</td><td>VL53L0X ToF Laser Distance Sensor (Micro LiDAR Sensor)</td><td>x1</td><td>1200</td><td>1200</td><td><a href="https://www.mouser.in/ProductDetail/DFRobot/SEN0245?qs=vdi0iO8H4N2%252ByTl%252BC%252Bk6RA%3D%3D&amp;mgh=1&amp;">Micro LiDAR</a></td></tr>
+            <tr><td>15</td><td>DHT Sensor (Tempature &amp; Humidity Sensor)</td><td>x1</td><td>108</td><td>108</td><td><a href="https://robu.in/product/dht11-digital-relative-humidity-temperature-sensor-module/">DHT Sensor</a></td></tr>
+            <tr><td>16</td><td>HM-10 Bluetooth 4.0 BLE Module (CC2541)</td><td>x1</td><td>365</td><td>365</td><td><a href="https://www.amazon.in/HM-10-Bluetooth-4-BLE-Module/dp/B09CH88Z6Y">Bluetooth Module</a></td></tr>
+            <tr><td>17</td><td>Ublox NEO-8M GPS Module</td><td>x1</td><td>1100</td><td>1100</td><td><a href="https://www.flyrobo.in/neo-m8n-gps-module-with-ceramic-active-antenna?tracking=ads&amp;">NEO-M8N GPS Module</a></td></tr>
+            <tr><td>18</td><td>TFT Touch Interface</td><td>x1</td><td>999</td><td>999</td><td><a href="https://kitsguru.com/products/3-5-inch-tft-screen-module-without-touch?variant=40708836458677&amp;country=IN&amp;currency=INR">3.5 inch Display Touch</a></td></tr>
+            <tr><td>19</td><td>LED</td><td>x1</td><td>37</td><td>37</td><td><a href="https://www.electronifyindia.com/products/high-intensity-5mm-led-red-clear-lens?variant=46642101092671&amp;country=IN&amp;currency=INR">LED</a></td></tr>
+            <tr class="total-row"><td>&nbsp;</td><td>Total Cost</td><td>-</td><td>11902</td><td>18197</td><td>&nbsp;</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+</main>
+  </template>
 </div><!-- end pg-gallery -->
 
 <!-- ════════════════ PAGE: OUR JOURNEY ════════════════ -->
@@ -1585,12 +1702,14 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
 
   let endorsementModalSrc = '../assets/bhf_endorsement.pdf';
   let endorsementModalTitle = 'Full endorsement document';
+  let endorsementModalSrcdoc = '';
 
-  function openEndorsementModal(src = '../assets/bhf_endorsement.pdf', title = 'BraveHeart Soldier Foundation endorsement document') {
+  function openEndorsementModal(src = '../assets/bhf_endorsement.pdf', title = 'BraveHeart Soldier Foundation endorsement document', options = {}) {
     const modal = document.getElementById('endorsement-modal');
     if (!modal) return;
     endorsementModalSrc = src;
     endorsementModalTitle = title;
+    endorsementModalSrcdoc = options.srcdoc || '';
     if (modal.parentElement !== document.body) document.body.appendChild(modal);
     modal.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -1609,9 +1728,15 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     const toggle = document.getElementById('endorsement-toggle');
     if (!frame || !toggle) return;
     const isPdf = endorsementModalSrc.toLowerCase().split('?')[0].endsWith('.pdf');
-    frame.src = isPdf
-      ? `${endorsementModalSrc}${isZoomedIn ? '#view=FitH' : '#zoom=page-fit'}`
-      : endorsementModalSrc;
+    if (endorsementModalSrcdoc) {
+      frame.removeAttribute('src');
+      frame.srcdoc = endorsementModalSrcdoc;
+    } else {
+      frame.removeAttribute('srcdoc');
+      frame.src = isPdf
+        ? `${endorsementModalSrc}${isZoomedIn ? '#view=FitH' : '#zoom=page-fit'}`
+        : endorsementModalSrc;
+    }
     frame.title = endorsementModalTitle;
     const normalizedTitle = endorsementModalTitle.toLowerCase();
     const isInvestmentDocument = normalizedTitle.includes('investment');
@@ -1621,6 +1746,10 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
       : (isInvestmentDocument ? 'Close Investment Letter' : 'Close endorsement');
     toggle.setAttribute('aria-label', isPhasePlan
       ? 'Close Phase Plan preview'
+      ? 'Close phase plan'
+      : (isInvestmentDocument ? 'Close Investment Letter' : 'Close endorsement');
+    toggle.setAttribute('aria-label', isPhasePlan
+      ? 'Close phase plan preview'
       : (isInvestmentDocument ? 'Close investment letter preview' : 'Close document preview'));
     toggle.dataset.zoomedIn = isZoomedIn ? '1' : '0';
   }
@@ -1652,6 +1781,16 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
 
   function openPhasePlan() {
     openEndorsementModal('../assets/phase_plan_preview.html', 'SmartDrive Assist phase plan spreadsheet');
+    const previewTemplate = document.getElementById('phase-plan-preview-template');
+    if (!previewTemplate) return;
+    openEndorsementModal('', 'SmartDrive Assist phase plan spreadsheet', {
+      srcdoc: previewTemplate.innerHTML.trim()
+    });
+    openEndorsementModal('../assets/phase_plan_preview.html', 'SmartDrive Assist phase plan spreadsheet');
+    const planUrl = new URL('../assets/phase_plan.xlsx', window.location.href).href;
+    const viewerUrl = 'https://view.officeapps.live.com/op/view.aspx?src=' + encodeURIComponent(planUrl);
+    openEndorsementModal(viewerUrl, 'SmartDrive Assist phase plan spreadsheet');
+    window.open(viewerUrl, '_blank', 'noopener');
   }
 
   function scrollTo(id) {
