@@ -1617,10 +1617,10 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     const isInvestmentDocument = normalizedTitle.includes('investment');
     const isPhasePlan = normalizedTitle.includes('phase plan');
     toggle.textContent = isPhasePlan
-      ? 'Close phase plan'
+      ? 'Close Phase Plan'
       : (isInvestmentDocument ? 'Close Investment Letter' : 'Close endorsement');
     toggle.setAttribute('aria-label', isPhasePlan
-      ? 'Close phase plan preview'
+      ? 'Close Phase Plan preview'
       : (isInvestmentDocument ? 'Close investment letter preview' : 'Close document preview'));
     toggle.dataset.zoomedIn = isZoomedIn ? '1' : '0';
   }
@@ -1654,7 +1654,6 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     const planUrl = new URL('../assets/phase_plan.xlsx', window.location.href).href;
     const viewerUrl = 'https://view.officeapps.live.com/op/view.aspx?src=' + encodeURIComponent(planUrl);
     openEndorsementModal(viewerUrl, 'SmartDrive Assist phase plan spreadsheet');
-    window.open(viewerUrl, '_blank', 'noopener');
   }
 
   function scrollTo(id) {
