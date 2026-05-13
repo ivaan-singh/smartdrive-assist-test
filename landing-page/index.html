@@ -894,7 +894,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
         <h3>Need the full plan?</h3>
         <p>Scroll-ready business model, implementation notes, and projected roadmap details are available in the complete document.</p>
       </div>
-      <button class="btn-outline" type="button" onclick="window.location.href='../assets/phase_plan.xlsx'">More details</button>
+      <button class="btn-outline" type="button" onclick="openPhasePlan()">More details</button>
     </div>
   </div>
 
@@ -1613,9 +1613,15 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
       ? `${endorsementModalSrc}${isZoomedIn ? '#view=FitH' : '#zoom=page-fit'}`
       : endorsementModalSrc;
     frame.title = endorsementModalTitle;
-    const isInvestmentDocument = endorsementModalTitle.toLowerCase().includes('investment');
-    toggle.textContent = isInvestmentDocument ? 'Close Investment Letter' : 'Close endorsement';
-    toggle.setAttribute('aria-label', isInvestmentDocument ? 'Close investment letter preview' : 'Close document preview');
+    const normalizedTitle = endorsementModalTitle.toLowerCase();
+    const isInvestmentDocument = normalizedTitle.includes('investment');
+    const isPhasePlan = normalizedTitle.includes('phase plan');
+    toggle.textContent = isPhasePlan
+      ? 'Close Phase Plan'
+      : (isInvestmentDocument ? 'Close Investment Letter' : 'Close endorsement');
+    toggle.setAttribute('aria-label', isPhasePlan
+      ? 'Close Phase Plan preview'
+      : (isInvestmentDocument ? 'Close investment letter preview' : 'Close document preview'));
     toggle.dataset.zoomedIn = isZoomedIn ? '1' : '0';
   }
 
@@ -1643,6 +1649,10 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     const hash = window.location.hash.replace('#','');
     showPage(VALID_PAGES.includes(hash) ? hash : 'home');
   })();
+
+  function openPhasePlan() {
+    openEndorsementModal('../assets/phase_plan_preview.html', 'SmartDrive Assist phase plan spreadsheet');
+  }
 
   function scrollTo(id) {
     setTimeout(() => {
