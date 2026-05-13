@@ -1780,6 +1780,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
   })();
 
   function openPhasePlan() {
+    openEndorsementModal('../assets/phase_plan_preview.html', 'SmartDrive Assist phase plan spreadsheet');
     const previewTemplate = document.getElementById('phase-plan-preview-template');
     if (!previewTemplate) return;
     openEndorsementModal('', 'SmartDrive Assist phase plan spreadsheet', {
