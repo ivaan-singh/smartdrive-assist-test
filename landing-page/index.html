@@ -138,6 +138,8 @@ h1 .hl{color:var(--accent);}
 .trust-dot{width:3px;height:3px;border-radius:50%;background:var(--border);flex-shrink:0;}
 .hero-visual{position:relative;z-index:1;display:flex;justify-content:center;}
 .hero-card{background:var(--white);border:1px solid var(--border);border-radius:22px;padding:2rem;width:100%;max-width:400px;box-shadow:0 24px 64px rgba(0,87,255,.07),0 4px 20px rgba(0,0,0,.04);}
+.hero-card.hero-video-card{max-width:520px;padding:1rem;}
+.hero-overview-video{width:100%;aspect-ratio:16/9;border:0;border-radius:14px;background:#111;display:block;box-shadow:0 14px 36px rgba(0,0,0,.08);}
 .hero-icon-wrap{width:52px;height:52px;border-radius:13px;background:var(--accent);display:flex;align-items:center;justify-content:center;margin-bottom:1.1rem;}
 .hero-icon-wrap svg{width:26px;height:26px;fill:white;}
 .hc-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.98rem;margin-bottom:3px;}
@@ -415,11 +417,8 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
       </div>
     </div>
     <div class="hero-visual fade-up">
-      <div class="hero-card">
-        <!-- Full logo displayed prominently -->
-        <div style="margin-bottom:1.25rem;">
-          <img src="../assets/logo.png" alt="SmartDrive Assist logo" style="width:100%;max-width:320px;display:block;margin:0 auto;border-radius:14px;"/>
-        </div>
+      <div class="hero-card hero-video-card">
+        <iframe class="hero-overview-video" src="https://www.youtube.com/embed/MHH5BXSrUzA" title="Overview Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
       </div>
     </div>
   </section>
