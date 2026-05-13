@@ -138,8 +138,6 @@ h1 .hl{color:var(--accent);}
 .trust-dot{width:3px;height:3px;border-radius:50%;background:var(--border);flex-shrink:0;}
 .hero-visual{position:relative;z-index:1;display:flex;justify-content:center;}
 .hero-card{background:var(--white);border:1px solid var(--border);border-radius:22px;padding:2rem;width:100%;max-width:400px;box-shadow:0 24px 64px rgba(0,87,255,.07),0 4px 20px rgba(0,0,0,.04);}
-.hero-card.hero-video-card{max-width:520px;padding:1rem;}
-.hero-overview-video{width:100%;aspect-ratio:16/9;border:0;border-radius:14px;background:#111;display:block;box-shadow:0 14px 36px rgba(0,0,0,.08);}
 .hero-icon-wrap{width:52px;height:52px;border-radius:13px;background:var(--accent);display:flex;align-items:center;justify-content:center;margin-bottom:1.1rem;}
 .hero-icon-wrap svg{width:26px;height:26px;fill:white;}
 .hc-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.98rem;margin-bottom:3px;}
@@ -417,8 +415,11 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
       </div>
     </div>
     <div class="hero-visual fade-up">
-      <div class="hero-card hero-video-card">
-        <iframe class="hero-overview-video" src="https://www.youtube.com/embed/MHH5BXSrUzA" title="Overview Video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      <div class="hero-card">
+        <!-- Full logo displayed prominently -->
+        <div style="margin-bottom:1.25rem;">
+          <img src="../assets/logo.png" alt="SmartDrive Assist logo" style="width:100%;max-width:320px;display:block;margin:0 auto;border-radius:14px;"/>
+        </div>
       </div>
     </div>
   </section>
@@ -1218,11 +1219,14 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
           <iframe width="100%" height="220" src="https://www.youtube.com/embed/u0Bka3FPrNs" title="Investment Video with Nitin Jain" style="border:0;border-radius:12px;" allowfullscreen></iframe>
           <p style="margin-top:.7rem;font-size:.84rem;color:var(--text-muted);">Investment Pitch to<strong style="color:var(--text-dark);"> Nitin Jain</strong></p>
         </div>
-        <div class="testi-card" id="overview-video">
-          <iframe width="100%" height="220" src="https://www.youtube.com/embed/MHH5BXSrUzA" title="Overview Video" style="border:0;border-radius:12px;" allowfullscreen></iframe>
-          <p style="margin-top:.7rem;font-size:.84rem;color:var(--text-muted);"><strong style="color:var(--text-dark);">Overview Video</strong></p>
-        </div>
-      </div>
+        <div class="testi-card" id="youtube-placeholder-prototype-demo">
+          <div class="gallery-youtube-placeholder" role="img" aria-label="YouTube placeholder for prototype demo video">
+            <div>
+              <span class="youtube-icon" aria-hidden="true"></span>
+              <strong>YouTube placeholder</strong>
+              Prototype demo video coming soon
+            </div>
+          </div>
           <p style="margin-top:.7rem;font-size:.84rem;color:var(--text-muted);"><strong style="color:var(--text-dark);">Prototype Demo</strong> &mdash; YouTube video placeholder</p>
         </div>
         <div class="testi-card" id="youtube-placeholder-sensor-testing">
@@ -1256,10 +1260,10 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
           <p style="margin-top:.7rem;font-size:.84rem;color:var(--text-muted);"><strong style="color:var(--text-dark);">Avishkaar</strong> &mdash; YouTube video placeholder</p>
         </div>
         <div class="testi-card" id="image-placeholder-1">
-          <a href="../assets/coding.jpg" aria-label="Coding">
-            <img src="../assets/coding.jpg" alt="Coding" style="width:100%;height:220px;display:block;object-fit:cover;border:0;border-radius:12px;background:var(--off-white);"/>
+          <a href="../assets/YOUR_FILE" aria-label="Open image placeholder 1 asset">
+            <img src="../assets/YOUR_FILE" alt="Gallery image placeholder 1" style="width:100%;height:220px;display:block;object-fit:cover;border:0;border-radius:12px;background:var(--off-white);"/>
           </a>
-          <p style="margin-top:.7rem;font-size:.84rem;color:var(--text-muted);"><strong style="color:var(--text-dark);">Coding</strong></p>
+          <p style="margin-top:.7rem;font-size:.84rem;color:var(--text-muted);"><strong style="color:var(--text-dark);">Image Placeholder 1</strong></p>
         </div>
         <div class="testi-card" id="image-placeholder-2">
           <a href="../assets/YOUR_FILE" aria-label="Open image placeholder 2 asset">
