@@ -894,7 +894,7 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
         <h3>Need the full plan?</h3>
         <p>Scroll-ready business model, implementation notes, and projected roadmap details are available in the complete document.</p>
       </div>
-      <button class="btn-outline" type="button" onclick="window.location.href='../assets/phase_plan.xlsx'">More details</button>
+      <button class="btn-outline" type="button" onclick="openPhasePlan()">More details</button>
     </div>
   </div>
 
@@ -1643,6 +1643,12 @@ footer{background:var(--text-dark);color:rgba(255,255,255,.4);padding:3rem 5%;di
     const hash = window.location.hash.replace('#','');
     showPage(VALID_PAGES.includes(hash) ? hash : 'home');
   })();
+
+  function openPhasePlan() {
+    const planUrl = new URL('../assets/phase_plan.xlsx', window.location.href).href;
+    const viewerUrl = 'https://view.officeapps.live.com/op/view.aspx?src=' + encodeURIComponent(planUrl);
+    window.open(viewerUrl, '_blank', 'noopener');
+  }
 
   function scrollTo(id) {
     setTimeout(() => {
